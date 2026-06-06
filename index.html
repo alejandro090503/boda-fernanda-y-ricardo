@@ -938,6 +938,25 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
 .date-statement .date-lbl{color:var(--ink-soft)!important}
 .date-statement .date-block + .date-block::before{color:var(--gold)}
 .date-statement .date-numbers{margin-top:34px}
+
+/* ---- Motivo line-art sobre títulos (estilo referencia) ---- */
+.section-motif{display:block;margin:0 auto 4px;color:var(--gold-deep);opacity:.92}
+.section-motif.dance{width:clamp(108px,16vw,148px);height:auto}
+/* ---- Chihuahua recortado flotante (como el perrito de la referencia) ---- */
+.bienv-dog{width:clamp(150px,26vw,210px)!important;filter:drop-shadow(0 16px 20px rgba(84,90,57,.14))!important}
+.bienv-mono{font-size:clamp(40px,7vw,64px)!important;opacity:.85}
+/* ---- Marco de venue tipo referencia (arco + marco sage + botánica) ---- */
+.venue-frame{position:relative;width:100%;max-width:296px;margin:0 auto 26px;padding:13px 13px 15px;
+  background:linear-gradient(160deg,#838963,#646a45);background-blend-mode:soft-light;background-image:var(--grain);
+  border-radius:8px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),inset 0 0 16px rgba(0,0,0,.20),0 12px 28px rgba(84,90,57,.26)}
+.venue-frame::after{content:"";position:absolute;inset:8px;border:1px solid rgba(231,200,115,.5);border-radius:132px 132px 5px 5px;pointer-events:none;z-index:3}
+.venue-arch{position:relative;border-radius:128px 128px 4px 4px;overflow:hidden;background:var(--paper);aspect-ratio:1/1.18}
+.venue-arch img{width:100%;height:100%;object-fit:cover;display:block;filter:url(#watercolor) saturate(.62) contrast(.94) sepia(.14) brightness(1.05)}
+.venue-sprig{position:absolute;width:34px;height:34px;color:rgba(231,200,115,.75);z-index:4}
+.venue-sprig.tl{top:3px;left:3px}
+.venue-sprig.tr{top:3px;right:3px;transform:scaleX(-1)}
+.venue-sprig.bl{bottom:3px;left:3px;transform:scaleY(-1)}
+.venue-sprig.br{bottom:3px;right:3px;transform:scale(-1,-1)}
 </style>
 </head>
 <body>
@@ -949,6 +968,15 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
     <feDisplacementMap in="SourceGraphic" in2="noise" scale="9" xChannelSelector="R" yChannelSelector="G" result="disp"/>
     <feGaussianBlur in="disp" stdDeviation="0.4"/>
   </filter>
+  <symbol id="sprig" viewBox="0 0 40 40">
+    <g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round">
+      <path d="M5 5 C13 9 21 17 29 31"/>
+      <path d="M9 7 q4 -5 10 -4 q-2 6 -10 4Z" fill="currentColor" stroke="none" opacity=".85"/>
+      <path d="M12 12 q-5 -2 -8 3 q6 2 8 -3Z" fill="currentColor" stroke="none" opacity=".85"/>
+      <path d="M17 18 q5 -2 9 2 q-5 3 -9 -2Z" fill="currentColor" stroke="none" opacity=".85"/>
+      <path d="M22 24 q-5 -1 -8 4 q6 1 8 -4Z" fill="currentColor" stroke="none" opacity=".85"/>
+    </g>
+  </symbol>
 </svg>
 
 <!-- ENVELOPE OPENING -->
@@ -1136,7 +1164,13 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
       <div class="locs-grid">
 
         <article class="loc-card" data-tilt>
-          <div class="wc-img loc-photo"><img src="iglesia.webp" alt="Santuario de San Francisco de Asís en acuarela" loading="lazy"></div>
+          <div class="venue-frame">
+            <div class="venue-arch"><img src="iglesia.webp" alt="Santuario de San Francisco de Asís en acuarela" loading="lazy"></div>
+            <svg class="venue-sprig tl"><use href="#sprig"/></svg>
+            <svg class="venue-sprig tr"><use href="#sprig"/></svg>
+            <svg class="venue-sprig bl"><use href="#sprig"/></svg>
+            <svg class="venue-sprig br"><use href="#sprig"/></svg>
+          </div>
           <div class="loc-type">Ceremonia Religiosa</div>
           <div class="loc-name">Santuario de San Francisco de Asís</div>
           <div class="loc-time">5:00 PM</div>
@@ -1145,7 +1179,13 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
         </article>
 
         <article class="loc-card" data-tilt>
-          <div class="wc-img loc-photo"><img src="acuarela-salon.webp" alt="Salón Montecielo en acuarela" loading="lazy"></div>
+          <div class="venue-frame">
+            <div class="venue-arch"><img src="acuarela-salon.webp" alt="Salón Montecielo en acuarela" loading="lazy"></div>
+            <svg class="venue-sprig tl"><use href="#sprig"/></svg>
+            <svg class="venue-sprig tr"><use href="#sprig"/></svg>
+            <svg class="venue-sprig bl"><use href="#sprig"/></svg>
+            <svg class="venue-sprig br"><use href="#sprig"/></svg>
+          </div>
           <div class="loc-type">Recepción</div>
           <div class="loc-name">Jardín &amp; Salón Montecielo</div>
           <div class="loc-time">9:00 PM</div>
@@ -1259,6 +1299,24 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
   <!-- DRESS CODE -->
   <section class="section-bg dress">
     <div class="container">
+      <svg class="section-motif dance" viewBox="0 0 200 178" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <!-- Caballero -->
+        <circle cx="74" cy="34" r="9.5"/>
+        <path d="M74 44 C72 60 75 76 78 90"/>
+        <path d="M78 90 C76 112 73 130 70 152"/>
+        <path d="M78 90 C86 110 93 130 99 152"/>
+        <path d="M74 56 C90 62 106 60 120 53"/>
+        <!-- Dama -->
+        <circle cx="132" cy="42" r="8.5"/>
+        <path d="M132 50 C129 60 124 70 119 79"/>
+        <path d="M120 53 C112 60 112 71 119 79"/>
+        <path d="M130 50 C146 53 157 45 167 35"/>
+        <!-- Vestido fluido -->
+        <path d="M119 79 C99 94 92 122 106 152 C128 164 158 158 182 150 C162 122 150 94 119 79 Z"/>
+        <path d="M124 86 C116 108 117 132 126 152" opacity=".55"/>
+        <path d="M146 96 C154 118 159 134 158 151" opacity=".55"/>
+        <path d="M134 90 C132 112 135 134 142 152" opacity=".45"/>
+      </svg>
       <div class="eyebrow">Código de vestimenta</div>
       <h2>Elegante <em>Formal</em></h2>
 

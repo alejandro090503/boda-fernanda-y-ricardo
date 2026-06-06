@@ -836,6 +836,108 @@ footer{background:linear-gradient(160deg,#efe2c8 0%,#f1e7d2 35%,#f3ecdd 65%,#fdf
 .album-btn{display:inline-block;padding:15px 36px;border:1px solid var(--accent-deep);font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--accent-deep);text-decoration:none;transition:all .4s;cursor:pointer}
 .album-btn:hover{background:var(--accent-deep);color:var(--paper)}
 .album-btn[aria-disabled="true"]{opacity:.45;pointer-events:none;border-style:dashed}
+
+/* ==================================================================
+   OVERRIDE · REPLICAR REFERENCIA daynight.thedigitalyes
+   Ivory + sage/olivo + títulos en script + textura de papel
+   ================================================================== */
+:root{
+  --bg:#e9e5d6;
+  --surface:#e3decd;
+  --paper:#f3efe1;
+  --sage:#6b6f43;
+  --sage-deep:#545a39;
+  --sage-band:#7c8264;
+  --accent:#6b6f43;
+  --accent-soft:#9a9e6f;
+  --accent-deep:#545a39;
+  --gold:#c9912f;
+  --gold-soft:#e3bd6f;
+  --gold-deep:#8f5e15;
+  --wine:#791a3d;
+  --copper:#ad3e00;
+  --ink:#3a3527;
+  --ink-soft:#6a6450;
+  --hair:color-mix(in srgb, var(--sage-deep) 16%, transparent);
+  --hair-gold:color-mix(in srgb, var(--gold) 30%, transparent);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+}
+/* Textura de papel en cada sección */
+.section-bg,.section-surface,.section-paper,.date-hero{background-blend-mode:soft-light;background-image:var(--grain)}
+.section-bg{background-color:var(--bg)}
+.section-surface{background-color:var(--surface)}
+.section-paper{background-color:var(--paper)}
+
+/* Títulos de sección en SCRIPT (firma de la referencia) */
+h2{font-family:var(--script)!important;font-weight:400!important;font-style:normal!important;
+  font-size:clamp(46px,8vw,74px)!important;line-height:1.04!important;color:var(--accent-deep)!important;letter-spacing:.01em!important}
+h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(--gold-deep)!important}
+/* Eyebrow estilo referencia: olivo, sin caps perdidos */
+.eyebrow{color:var(--sage)!important}
+.eyebrow::before,.eyebrow::after{background:var(--sage)!important}
+
+/* Hero · nombres en script como la referencia */
+.hero-name{font-family:var(--script)!important;font-style:normal!important;font-weight:400!important;font-size:clamp(58px,12vw,124px)!important;line-height:.98!important}
+.hero-and{font-family:var(--script)!important}
+
+/* Botones sólidos sage (ref: Google Maps / Calendar) */
+.loc-btn{background:var(--sage-deep)!important;color:#fff!important;border:none!important;border-radius:7px!important;letter-spacing:.16em!important;padding:14px 30px!important;padding-left:30px!important}
+.loc-btn::before{display:none!important}
+.loc-btn:hover{background:var(--sage)!important;color:#fff!important}
+.album-btn{background:var(--sage-deep);color:#fff;border:none;border-radius:7px}
+.album-btn:hover{background:var(--sage);color:#fff}
+.album-btn[aria-disabled="true"]{background:transparent;color:var(--sage);border:1px dashed var(--sage)}
+.rsvp-btn{background:var(--sage-deep)!important;color:#fff!important;border:none!important;box-shadow:0 8px 24px rgba(84,90,57,.35)!important}
+.rsvp-btn::after{background:var(--sage)!important}
+
+/* Countdown · banda olivo, números crema sin cajas (ref) */
+.section-bg.countdown{background-color:var(--sage-band)!important;background-image:var(--grain)}
+.countdown h2{color:#f4efe0!important}
+.countdown .eyebrow{color:#eae6d2!important}
+.countdown .eyebrow::before,.countdown .eyebrow::after{background:#eae6d2!important}
+.countdown-sub{color:#eae6d2!important}
+.cd-block{background:transparent!important;border:none!important;box-shadow:none!important;backdrop-filter:none!important;border-radius:0!important}
+.cd-block::before,.cd-block::after{display:none!important}
+.cd-num{background:none!important;-webkit-text-fill-color:#f6f1e2!important;color:#f6f1e2!important;font-style:normal!important}
+.cd-lbl{color:rgba(246,241,226,.85)!important}
+.countdown .section-bg::after,.section-bg.countdown::after{opacity:.4}
+
+/* Itinerario · íconos sage */
+.itin-icon-wrap{background:var(--surface)!important;border-color:color-mix(in srgb,var(--sage) 45%,transparent)!important;color:var(--sage)!important}
+.itin-time{color:var(--sage-deep)!important;text-shadow:none!important}
+
+/* ---- ENVELOPE INTRO estilo referencia (papel sage + monograma dorado) ---- */
+#envelope-screen{background:
+   radial-gradient(120% 90% at 50% 30%, #8a8f66 0%, #6f7449 55%, #5a5e3a 100%);
+   background-blend-mode:soft-light;}
+#env-paper{position:absolute;inset:0;background-image:var(--grain);opacity:.7;mix-blend-mode:soft-light;pointer-events:none}
+#env-fold{position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.05) 0%, transparent 42%),
+    linear-gradient(225deg, rgba(255,255,255,.05) 0%, transparent 42%),
+    linear-gradient(to bottom, transparent 49.6%, rgba(0,0,0,.10) 50%, transparent 50.4%);}
+#env-fold::before,#env-fold::after{content:"";position:absolute;left:50%;top:50%;width:140vw;height:1px;background:rgba(0,0,0,.10);transform-origin:center}
+#env-fold::before{transform:translate(-50%,-50%) rotate(33deg)}
+#env-fold::after{transform:translate(-50%,-50%) rotate(-33deg)}
+#env-mono{position:relative;z-index:2;font-family:var(--script);font-size:clamp(72px,17vw,168px);line-height:1;
+  color:#e7c873;
+  text-shadow:0 1px 0 #f3e4ad,0 2px 3px rgba(120,86,20,.55),0 0 22px rgba(231,200,115,.35);}
+#env-hint{color:#f1ecd8!important;background:rgba(74,78,46,.55)!important;border-color:rgba(231,200,115,.5)!important}
+#env-hint::before,#env-hint::after{background:linear-gradient(90deg,transparent,rgba(231,200,115,.7))!important}
+
+/* ---- FOTO en óvalo con marco botánico (ref) ---- */
+.oval-photo{position:relative;width:min(420px,82vw);margin:8px auto 0;aspect-ratio:4/5}
+.oval-photo img{width:100%;height:100%;object-fit:cover;object-position:center 30%;
+  border-radius:50%/50%;
+  -webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%, #000 64%, transparent 72%);
+  mask-image:radial-gradient(ellipse 50% 50% at 50% 50%, #000 64%, transparent 72%);
+  filter:sepia(.5) saturate(.75) contrast(1.02) brightness(1.02)}
+.oval-ring{position:absolute;inset:-6%;border-radius:50%;border:1px solid var(--hair-gold);pointer-events:none}
+.oval-frame{position:absolute;inset:-12%;width:124%;height:124%;pointer-events:none;color:var(--sage);opacity:.9}
+.date-statement .date-num{color:var(--accent-deep)!important;-webkit-text-fill-color:initial!important}
+.date-statement .date-lbl{color:var(--ink-soft)!important}
+.date-statement .date-block + .date-block::before{color:var(--gold)}
+.date-statement .date-numbers{margin-top:34px}
 </style>
 </head>
 <body>
@@ -851,10 +953,11 @@ footer{background:linear-gradient(160deg,#efe2c8 0%,#f1e7d2 35%,#f3ecdd 65%,#fdf
 
 <!-- ENVELOPE OPENING -->
 <div id="envelope-screen" role="button" aria-label="Toca para abrir la invitación" tabindex="0">
-  <img id="env-image" src="envelope.png" alt="">
-  <video id="env-video" muted playsinline preload="auto">
-    <source src="envelope.mp4" type="video/mp4">
-  </video>
+  <div id="env-image" style="display:flex;align-items:center;justify-content:center">
+    <div id="env-paper"></div>
+    <div id="env-fold"></div>
+    <div id="env-mono">R<span style="font-size:.58em;vertical-align:.12em">&amp;</span>F</div>
+  </div>
   <div id="env-hint">Toca para abrir</div>
 </div>
 <div id="env-flash" aria-hidden="true"></div>
@@ -954,14 +1057,14 @@ footer{background:linear-gradient(160deg,#efe2c8 0%,#f1e7d2 35%,#f3ecdd 65%,#fdf
     </div>
   </section>
 
-  <div class="seam" style="--from:var(--surface);--to:#3a1620" aria-hidden="true"></div>
+  <div class="seam" style="--from:var(--surface);--to:var(--paper)" aria-hidden="true"></div>
 
-  <!-- FECHA HERO -->
-  <section class="date-hero">
+  <!-- FECHA + FOTO EN ÓVALO -->
+  <section class="section-paper date-statement" style="text-align:center">
     <div class="container">
-      <div class="date-eyebrow" data-anim="date-eb">Reserva la fecha</div>
-      <h2 class="date-h">Nuestro <em>gran</em> día</h2>
-      <div class="date-numbers">
+      <div class="eyebrow">Reserva la fecha</div>
+      <h2>Nuestro <em>gran</em> día</h2>
+      <div class="date-numbers" style="margin-top:34px;margin-bottom:8px">
         <div class="date-block">
           <div class="date-num" data-count-to="8">0</div>
           <div class="date-lbl">Agosto</div>
@@ -971,10 +1074,34 @@ footer{background:linear-gradient(160deg,#efe2c8 0%,#f1e7d2 35%,#f3ecdd 65%,#fdf
           <div class="date-lbl">Sábado</div>
         </div>
       </div>
+      <div class="oval-photo">
+        <img src="foto1.webp" alt="Fernanda y Ricardo">
+        <span class="oval-ring"></span>
+        <svg class="oval-frame" viewBox="0 0 200 250" fill="none" aria-hidden="true">
+          <g stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round" opacity=".85">
+            <path d="M100 6 Q70 16 58 40 Q48 60 52 84"/>
+            <path d="M100 6 Q130 16 142 40 Q152 60 148 84"/>
+            <path d="M100 244 Q70 234 58 210 Q48 190 52 166"/>
+            <path d="M100 244 Q130 234 142 210 Q152 190 148 166"/>
+            <g opacity=".9">
+              <path d="M72 26 q-10 -5 -16 1 q8 4 16 -1Z"/><path d="M60 44 q-11 -3 -16 4 q9 3 16 -4Z"/>
+              <path d="M53 64 q-11 -1 -15 7 q9 1 15 -7Z"/><path d="M53 82 q-10 2 -12 11 q9 -1 12 -11Z"/>
+              <path d="M128 26 q10 -5 16 1 q-8 4 -16 -1Z"/><path d="M140 44 q11 -3 16 4 q-9 3 -16 -4Z"/>
+              <path d="M147 64 q11 -1 15 7 q-9 1 -15 -7Z"/><path d="M147 82 q10 2 12 11 q-9 -1 -12 -11Z"/>
+              <path d="M72 224 q-10 5 -16 -1 q8 -4 16 1Z"/><path d="M60 206 q-11 3 -16 -4 q9 -3 16 4Z"/>
+              <path d="M53 186 q-11 1 -15 -7 q9 -1 15 7Z"/><path d="M53 168 q-10 -2 -12 -11 q9 1 12 11Z"/>
+              <path d="M128 224 q10 5 16 -1 q-8 -4 -16 1Z"/><path d="M140 206 q11 3 16 -4 q-9 -3 -16 4Z"/>
+              <path d="M147 186 q11 1 15 -7 q-9 -1 -15 7Z"/><path d="M147 168 q10 -2 12 -11 q-9 1 -12 11Z"/>
+            </g>
+            <circle cx="100" cy="5" r="2.2" fill="currentColor" stroke="none" opacity=".7"/>
+            <circle cx="100" cy="245" r="2.2" fill="currentColor" stroke="none" opacity=".7"/>
+          </g>
+        </svg>
+      </div>
     </div>
   </section>
 
-  <div class="seam" style="--from:#3a1620;--to:var(--surface)" aria-hidden="true"></div>
+  <div class="seam" style="--from:var(--paper);--to:var(--surface)" aria-hidden="true"></div>
 
   <!-- FAMILIA -->
   <section class="section-surface familia">

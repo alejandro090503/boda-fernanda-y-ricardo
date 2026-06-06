@@ -933,7 +933,7 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
   mask-image:radial-gradient(ellipse 50% 50% at 50% 50%, #000 64%, transparent 72%);
   filter:sepia(.5) saturate(.75) contrast(1.02) brightness(1.02)}
 .oval-ring{position:absolute;inset:-6%;border-radius:50%;border:1px solid var(--hair-gold);pointer-events:none}
-.oval-frame{position:absolute;inset:-12%;width:124%;height:124%;pointer-events:none;color:var(--sage);opacity:.9}
+.oval-frame{position:absolute;inset:-13%;width:126%;height:126%;pointer-events:none;color:#c2a25c;opacity:.92;filter:drop-shadow(0 1px 1px rgba(255,255,255,.5))}
 .date-statement .date-num{color:var(--accent-deep)!important;-webkit-text-fill-color:initial!important}
 .date-statement .date-lbl{color:var(--ink-soft)!important}
 .date-statement .date-block + .date-block::before{color:var(--gold)}
@@ -951,12 +951,28 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
   border-radius:8px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),inset 0 0 16px rgba(0,0,0,.20),0 12px 28px rgba(84,90,57,.26)}
 .venue-frame::after{content:"";position:absolute;inset:8px;border:1px solid rgba(231,200,115,.5);border-radius:132px 132px 5px 5px;pointer-events:none;z-index:3}
 .venue-arch{position:relative;border-radius:128px 128px 4px 4px;overflow:hidden;background:var(--paper);aspect-ratio:1/1.18}
-.venue-arch img{width:100%;height:100%;object-fit:cover;display:block;filter:url(#watercolor) saturate(.62) contrast(.94) sepia(.14) brightness(1.05)}
+.venue-arch img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.03) contrast(1.02)}
 .venue-sprig{position:absolute;width:34px;height:34px;color:rgba(231,200,115,.75);z-index:4}
 .venue-sprig.tl{top:3px;left:3px}
 .venue-sprig.tr{top:3px;right:3px;transform:scaleX(-1)}
 .venue-sprig.bl{bottom:3px;left:3px;transform:scaleY(-1)}
 .venue-sprig.br{bottom:3px;right:3px;transform:scale(-1,-1)}
+
+/* ---- DRESS CODE · formato card (estilo referencia) ---- */
+.dress-block{max-width:600px;margin:20px auto 0;position:relative}
+.dress-dance{display:block;width:min(560px,94%);height:auto;margin:0 auto -20px;position:relative;z-index:2;color:var(--sage-deep);opacity:.92}
+.dress-card{position:relative;background:#fbf8ef;border-radius:22px;padding:clamp(46px,7vw,60px) clamp(26px,5vw,52px) 42px;text-align:center;background-blend-mode:soft-light;background-image:var(--grain);box-shadow:0 20px 54px rgba(84,90,57,.16),inset 0 0 0 1px rgba(201,160,68,.16)}
+.dress-card-title{font-family:var(--display)!important;font-style:italic;font-weight:600;font-size:clamp(24px,3.2vw,34px);color:var(--accent-deep);margin-bottom:20px;letter-spacing:.01em}
+.dress-card p{font-family:var(--serif);font-size:clamp(16px,1.8vw,18px);line-height:1.72;color:var(--ink-soft);margin:0 auto 15px;max-width:470px;font-weight:500}
+.dress-card p strong{color:var(--accent-deep);font-weight:700}
+.dress-card .dress-tip{font-style:italic;font-size:clamp(15px,1.7vw,16.5px)}
+.dress-card .dress-avoid{margin:26px auto 0;border-top:1px solid var(--hair-gold);padding-top:26px}
+
+/* ---- TRANSPORTE · ilustración camión sobre la card ---- */
+.transporte-wrap{max-width:560px;margin:50px auto 0}
+.bus-motif{display:block;width:min(230px,64%);height:auto;margin:0 auto 4px;color:var(--sage-deep);opacity:.92}
+.transporte{flex-direction:column!important;text-align:center!important;align-items:center!important;gap:0!important}
+.transporte .transporte-txt strong{margin-top:0}
 </style>
 </head>
 <body>
@@ -1106,23 +1122,49 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
         <img src="foto1.webp" alt="Fernanda y Ricardo">
         <span class="oval-ring"></span>
         <svg class="oval-frame" viewBox="0 0 200 250" fill="none" aria-hidden="true">
-          <g stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round" opacity=".85">
-            <path d="M100 6 Q70 16 58 40 Q48 60 52 84"/>
-            <path d="M100 6 Q130 16 142 40 Q152 60 148 84"/>
-            <path d="M100 244 Q70 234 58 210 Q48 190 52 166"/>
-            <path d="M100 244 Q130 234 142 210 Q152 190 148 166"/>
-            <g opacity=".9">
-              <path d="M72 26 q-10 -5 -16 1 q8 4 16 -1Z"/><path d="M60 44 q-11 -3 -16 4 q9 3 16 -4Z"/>
-              <path d="M53 64 q-11 -1 -15 7 q9 1 15 -7Z"/><path d="M53 82 q-10 2 -12 11 q9 -1 12 -11Z"/>
-              <path d="M128 26 q10 -5 16 1 q-8 4 -16 -1Z"/><path d="M140 44 q11 -3 16 4 q-9 3 -16 -4Z"/>
-              <path d="M147 64 q11 -1 15 7 q-9 1 -15 -7Z"/><path d="M147 82 q10 2 12 11 q-9 -1 -12 -11Z"/>
-              <path d="M72 224 q-10 5 -16 -1 q8 -4 16 1Z"/><path d="M60 206 q-11 3 -16 -4 q9 -3 16 4Z"/>
-              <path d="M53 186 q-11 1 -15 -7 q9 -1 15 7Z"/><path d="M53 168 q-10 -2 -12 -11 q9 1 12 11Z"/>
-              <path d="M128 224 q10 5 16 -1 q-8 -4 -16 1Z"/><path d="M140 206 q11 3 16 -4 q-9 -3 -16 4Z"/>
-              <path d="M147 186 q11 1 15 -7 q-9 -1 -15 7Z"/><path d="M147 168 q10 -2 12 -11 q-9 1 -12 11Z"/>
+          <defs>
+            <g id="rose" stroke="currentColor" stroke-width=".9" fill="none" stroke-linecap="round">
+              <circle r="1.5"/>
+              <path d="M0 -1.6 A3 3 0 1 1 -2.7 1.2"/>
+              <path d="M2 -3.4 A5 5 0 1 1 -4.4 2"/>
+              <path d="M4.4 -3.2 A6.8 6.8 0 1 1 -5.6 3.6"/>
             </g>
-            <circle cx="100" cy="5" r="2.2" fill="currentColor" stroke="none" opacity=".7"/>
-            <circle cx="100" cy="245" r="2.2" fill="currentColor" stroke="none" opacity=".7"/>
+            <g id="leaf2" stroke="currentColor" stroke-width=".9" fill="none" stroke-linecap="round">
+              <path d="M0 0 Q7 -4 13 -1 Q7 2 0 0Z"/>
+              <path d="M0 0 Q7 4 13 1 Q7 -2 0 0Z"/>
+            </g>
+          </defs>
+          <g stroke="currentColor" stroke-width=".8" fill="none" stroke-linecap="round" opacity=".9">
+            <!-- guirnalda: vid alrededor del óvalo -->
+            <path d="M100 4 Q56 12 36 50 Q16 86 18 125 Q16 164 36 200 Q56 238 100 246 Q144 238 164 200 Q184 164 182 125 Q184 86 164 50 Q144 12 100 4"/>
+          </g>
+          <!-- rosas distribuidas -->
+          <use href="#rose" transform="translate(100,9) scale(1.2)"/>
+          <use href="#rose" transform="translate(45,40) scale(1.35)"/>
+          <use href="#rose" transform="translate(155,40) scale(1.35)"/>
+          <use href="#rose" transform="translate(22,118) scale(1.5)"/>
+          <use href="#rose" transform="translate(178,118) scale(1.5)"/>
+          <use href="#rose" transform="translate(45,210) scale(1.35)"/>
+          <use href="#rose" transform="translate(155,210) scale(1.35)"/>
+          <use href="#rose" transform="translate(100,242) scale(1.2)"/>
+          <use href="#rose" transform="translate(26,80) scale(1)"/>
+          <use href="#rose" transform="translate(174,80) scale(1)"/>
+          <use href="#rose" transform="translate(26,170) scale(1)"/>
+          <use href="#rose" transform="translate(174,170) scale(1)"/>
+          <!-- hojas de relleno -->
+          <g opacity=".8">
+            <use href="#leaf2" transform="translate(70,18) rotate(28) scale(.9)"/>
+            <use href="#leaf2" transform="translate(130,18) rotate(152) scale(.9)"/>
+            <use href="#leaf2" transform="translate(30,58) rotate(70) scale(.9)"/>
+            <use href="#leaf2" transform="translate(170,58) rotate(110) scale(.9)"/>
+            <use href="#leaf2" transform="translate(17,98) rotate(92) scale(.9)"/>
+            <use href="#leaf2" transform="translate(183,98) rotate(88) scale(.9)"/>
+            <use href="#leaf2" transform="translate(17,150) rotate(268) scale(.9)"/>
+            <use href="#leaf2" transform="translate(183,150) rotate(272) scale(.9)"/>
+            <use href="#leaf2" transform="translate(30,192) rotate(290) scale(.9)"/>
+            <use href="#leaf2" transform="translate(170,192) rotate(250) scale(.9)"/>
+            <use href="#leaf2" transform="translate(70,232) rotate(332) scale(.9)"/>
+            <use href="#leaf2" transform="translate(130,232) rotate(208) scale(.9)"/>
           </g>
         </svg>
       </div>
@@ -1278,17 +1320,47 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
       </div><!-- /.itin-wrap -->
 
       <!-- TRANSPORTE -->
-      <div class="transporte">
-        <svg viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="4" y="8" width="48" height="22" rx="4"/>
-          <path d="M52 14h6l2 6v8a2 2 0 01-2 2h-6"/>
-          <line x1="10" y1="14" x2="46" y2="14"/>
-          <line x1="19" y1="8" x2="19" y2="14"/><line x1="28" y1="8" x2="28" y2="14"/><line x1="37" y1="8" x2="37" y2="14"/>
-          <circle cx="17" cy="32" r="4"/><circle cx="45" cy="32" r="4"/>
+      <div class="transporte-wrap">
+        <svg class="bus-motif" viewBox="0 0 220 168" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <!-- templo al fondo -->
+          <g stroke-width="1.3" opacity=".9">
+            <path d="M150 50 L150 30 L162 22 L174 30 L174 50"/>
+            <path d="M162 22 L162 14"/><path d="M158 17 L166 17"/>
+            <path d="M146 50 L178 50"/>
+            <rect x="159" y="40" width="6" height="10"/>
+          </g>
+          <!-- arbolitos -->
+          <g stroke-width="1.3" opacity=".85">
+            <path d="M44 56 C36 56 34 46 42 44 C40 36 52 34 54 42 C62 42 62 52 54 54"/>
+            <path d="M48 54 L48 66"/>
+            <path d="M196 60 C190 60 188 52 194 50 C193 44 202 43 204 49 C210 49 210 57 204 59"/>
+            <path d="M200 58 L200 68"/>
+          </g>
+          <!-- camino sinuoso -->
+          <path d="M150 52 C150 70 120 76 118 92 C116 108 150 112 150 130" stroke-width="1.4" opacity=".75"/>
+          <path d="M138 56 C138 72 110 80 110 94" stroke-width="1.2" opacity=".5" stroke-dasharray="2 5"/>
+          <!-- camión -->
+          <g stroke-width="1.7">
+            <path d="M40 150 L40 116 C40 110 44 106 50 106 L150 106 C158 106 162 110 168 118 L176 130 C178 133 178 138 178 142 L178 150"/>
+            <path d="M40 150 L178 150"/>
+            <!-- ventanas -->
+            <path d="M52 112 L96 112 L96 126 L52 126 Z"/>
+            <path d="M104 112 L138 112 L146 124 L104 124 Z"/>
+            <!-- pasajeros (siluetas) -->
+            <circle cx="64" cy="120" r="3"/><circle cx="78" cy="120" r="3"/><circle cx="118" cy="119" r="3"/>
+            <!-- detalles frontales -->
+            <path d="M168 132 L176 132"/><circle cx="172" cy="144" r="2.4"/>
+            <path d="M40 134 L52 134"/>
+            <!-- ruedas -->
+            <circle cx="70" cy="150" r="9"/><circle cx="70" cy="150" r="3"/>
+            <circle cx="150" cy="150" r="9"/><circle cx="150" cy="150" r="3"/>
+          </g>
         </svg>
+        <div class="transporte">
         <div class="transporte-txt">
           <strong>Transporte</strong>
           Contaremos con una opción de traslado (con costo) en la ruta hotel → iglesia → salón → hotel. Pregúntanos los detalles al confirmar tu asistencia.
+        </div>
         </div>
       </div>
     </div>
@@ -1299,87 +1371,50 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
   <!-- DRESS CODE -->
   <section class="section-bg dress">
     <div class="container">
-      <svg class="section-motif dance" viewBox="0 0 200 178" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <!-- Caballero -->
-        <circle cx="74" cy="34" r="9.5"/>
-        <path d="M74 44 C72 60 75 76 78 90"/>
-        <path d="M78 90 C76 112 73 130 70 152"/>
-        <path d="M78 90 C86 110 93 130 99 152"/>
-        <path d="M74 56 C90 62 106 60 120 53"/>
-        <!-- Dama -->
-        <circle cx="132" cy="42" r="8.5"/>
-        <path d="M132 50 C129 60 124 70 119 79"/>
-        <path d="M120 53 C112 60 112 71 119 79"/>
-        <path d="M130 50 C146 53 157 45 167 35"/>
-        <!-- Vestido fluido -->
-        <path d="M119 79 C99 94 92 122 106 152 C128 164 158 158 182 150 C162 122 150 94 119 79 Z"/>
-        <path d="M124 86 C116 108 117 132 126 152" opacity=".55"/>
-        <path d="M146 96 C154 118 159 134 158 151" opacity=".55"/>
-        <path d="M134 90 C132 112 135 134 142 152" opacity=".45"/>
-      </svg>
       <div class="eyebrow">Código de vestimenta</div>
       <h2>Elegante <em>Formal</em></h2>
 
-      <!-- Figuras Caballero & Dama -->
-      <div class="dc-figures">
-        <div class="dc-fig">
-          <svg class="dc-svg" id="svg-cab" viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <circle id="cab-head" cx="50" cy="22" r="13" fill="#dcb68c"/>
-            <path id="cab-hair" d="M37 18 Q40 8 50 8 Q60 8 63 18 Q63 14 60 13 Q55 11 50 12 Q45 11 40 13 Q37 14 37 18 Z" fill="#6e3b22"/>
-            <rect id="cab-neck" x="46" y="34" width="8" height="8" fill="#dcb68c"/>
-            <path id="cab-shirt" d="M30 44 L50 60 L70 44 L70 90 L30 90 Z" fill="#efe2c8" stroke="#9a6f3a" stroke-width="1"/>
-            <path id="cab-body" d="M22 46 Q26 42 36 44 L50 64 L64 44 Q74 42 78 46 L82 140 L18 140 Z" fill="#551029" stroke="#551029" stroke-width="1"/>
-            <path id="cab-tie" d="M36 44 L34 80 L50 64 L66 80 L64 44 L50 60 Z" fill="#6e3b22" stroke="#b6883a" stroke-width=".8" opacity=".95"/>
-            <path id="cab-tie2" d="M47 62 L46 90 L50 96 L54 90 L53 62 L50 64 Z" fill="#b6883a"/>
-            <circle cx="50" cy="108" r="1.4" fill="#cf8a1f"/>
-            <rect id="cab-belt" x="20" y="138" width="60" height="5" fill="#2a1410"/>
-            <rect x="46" y="136" width="8" height="9" fill="#b6883a"/>
-            <path id="cab-legs" d="M22 144 L28 196 L46 196 L50 168 L54 196 L72 196 L78 144 Z" fill="#551029"/>
-            <ellipse id="cab-shoe-l" cx="36" cy="197" rx="11" ry="3" fill="#2a1410"/>
-            <ellipse id="cab-shoe-r" cx="64" cy="197" rx="11" ry="3" fill="#2a1410"/>
-          </svg>
-          <div class="dc-fig-name">Caballeros</div>
-          <div class="dc-fig-hint">Traje completo y zapato formal<br>Sin tenis ni mezclilla</div>
+      <div class="dress-block">
+        <svg class="dress-dance" viewBox="0 0 560 190" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <defs>
+            <g id="couple">
+              <circle cx="74" cy="34" r="9.5"/>
+              <path d="M74 44 C72 60 75 76 78 90"/>
+              <path d="M78 90 C76 112 73 130 70 152"/>
+              <path d="M78 90 C86 110 93 130 99 152"/>
+              <path d="M74 56 C90 62 106 60 120 53"/>
+              <circle cx="132" cy="42" r="8.5"/>
+              <path d="M132 50 C129 60 124 70 119 79"/>
+              <path d="M120 53 C112 60 112 71 119 79"/>
+              <path d="M130 50 C146 53 157 45 167 35"/>
+              <path d="M119 79 C99 94 92 122 106 152 C128 164 158 158 182 150 C162 122 150 94 119 79 Z"/>
+              <path d="M124 86 C116 108 117 132 126 152" opacity=".55"/>
+              <path d="M146 96 C154 118 159 134 158 151" opacity=".55"/>
+              <path d="M134 90 C132 112 135 134 142 152" opacity=".45"/>
+            </g>
+          </defs>
+          <use href="#couple" transform="translate(6,16) scale(.74)"/>
+          <use href="#couple" transform="translate(198,4) scale(.86)"/>
+          <use href="#couple" transform="translate(402,16) scale(.74)"/>
+        </svg>
+        <div class="dress-card">
+          <h3 class="dress-card-title">Etiqueta formal</h3>
+          <p>Les pedimos vestir formalmente para acompañarnos en este día tan especial.</p>
+          <p><strong>Caballeros</strong> · Traje completo y zapato formal. Sin tenis ni mezclilla.</p>
+          <p><strong>Damas</strong> · Vestido largo. Sin plateado, dorado, pastel ni colores claros.</p>
+          <p class="dress-tip">Recomendamos evitar el tacón de aguja: la celebración tiene área de jardín, por lo que un tacón cómodo, de bloque o flats serán mucho más cómodos.</p>
+          <div class="dress-avoid">
+            <div class="swatch-group-title">Colores a evitar</div>
+            <div class="avoid-list">
+              <div class="avoid-item"><span class="avoid-c" style="background:#FFFFFF;border:1.5px solid #d8cdb8"></span>Blanco</div>
+              <div class="avoid-item"><span class="avoid-c" style="background:#ebebeb"></span>Gris claro</div>
+              <div class="avoid-item"><span class="avoid-c" style="background:#fefcdd"></span>Amarillo pálido</div>
+              <div class="avoid-item"><span class="avoid-c" style="background:#cbf0ff"></span>Azul cielo</div>
+              <div class="avoid-item"><span class="avoid-c" style="background:#f9dbe0"></span>Rosa pálido</div>
+            </div>
+            <div class="avoid-note">El blanco es exclusivo de la novia</div>
+          </div>
         </div>
-
-        <div class="dc-divider" aria-hidden="true"></div>
-
-        <div class="dc-fig">
-          <svg class="dc-svg" id="svg-dam" viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path id="dam-hair" d="M34 28 Q30 14 50 8 Q70 14 66 28 Q70 44 64 52 Q50 48 36 52 Q30 44 34 28 Z" fill="#6e3b22"/>
-            <circle id="dam-head" cx="50" cy="26" r="13" fill="#dcb68c"/>
-            <path id="dam-hairband" d="M37 22 Q40 14 50 14 Q60 14 63 22 Q58 18 50 19 Q42 18 37 22 Z" fill="#6e3b22"/>
-            <circle cx="37" cy="30" r="1.4" fill="#cf8a1f"/>
-            <circle cx="63" cy="30" r="1.4" fill="#cf8a1f"/>
-            <rect id="dam-neck" x="46" y="38" width="8" height="6" fill="#dcb68c"/>
-            <path id="dam-arm-l" d="M30 48 Q18 64 16 90" stroke="#b6883a" stroke-width="8" stroke-linecap="round" fill="none"/>
-            <path id="dam-arm-r" d="M70 48 Q82 64 84 90" stroke="#b6883a" stroke-width="8" stroke-linecap="round" fill="none"/>
-            <path id="dam-torso" d="M32 46 Q38 42 46 44 L50 60 L54 44 Q62 42 68 46 L72 90 L28 90 Z" fill="#b6883a" stroke="#b6883a" stroke-width="1"/>
-            <path d="M42 60 Q50 66 58 60" stroke="#efe2c8" stroke-width=".9" fill="none" opacity=".8"/>
-            <rect id="dam-waist" x="28" y="88" width="44" height="7" fill="#efe2c8" opacity=".95"/>
-            <path id="dam-skirt" d="M28 94 Q14 130 4 198 L96 198 Q86 130 72 94 Z" fill="#cf8a1f"/>
-            <path id="dam-fold-l" d="M38 95 Q28 140 18 198" stroke="#efe2c8" stroke-width="1.5" fill="none" opacity=".6"/>
-            <path id="dam-fold-m" d="M50 95 L50 198" stroke="#efe2c8" stroke-width="1.5" fill="none" opacity=".5"/>
-            <path id="dam-fold-r" d="M62 95 Q72 140 82 198" stroke="#efe2c8" stroke-width="1.5" fill="none" opacity=".6"/>
-            <path d="M26 110 Q18 150 10 198 L4 198 Q12 150 22 108 Z" fill="#FFFFFF" opacity=".08"/>
-            <ellipse cx="50" cy="199" rx="48" ry="2" fill="#1c0f0a" opacity=".25"/>
-          </svg>
-          <div class="dc-fig-name">Damas</div>
-          <div class="dc-fig-hint">Vestido largo · Tacón cómodo (hay jardín)<br>Sin plateado, dorado, pastel ni colores claros</div>
-        </div>
-      </div>
-
-      <!-- Colores a evitar -->
-      <div class="dress-avoid">
-        <div class="swatch-group-title">Colores a evitar</div>
-        <div class="avoid-list">
-          <div class="avoid-item"><span class="avoid-c" style="background:#FFFFFF;border:1.5px solid #d8cdb8"></span>Blanco</div>
-          <div class="avoid-item"><span class="avoid-c" style="background:#ebebeb"></span>Gris claro</div>
-          <div class="avoid-item"><span class="avoid-c" style="background:#fefcdd"></span>Amarillo pálido</div>
-          <div class="avoid-item"><span class="avoid-c" style="background:#cbf0ff"></span>Azul cielo</div>
-          <div class="avoid-item"><span class="avoid-c" style="background:#f9dbe0"></span>Rosa pálido</div>
-        </div>
-        <div class="avoid-note">El blanco es exclusivo de la novia</div>
       </div>
 
     </div>

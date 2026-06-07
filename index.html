@@ -830,7 +830,7 @@ footer{background:linear-gradient(160deg,#efe2c8 0%,#f1e7d2 35%,#f3ecdd 65%,#fdf
 .album{text-align:center}
 .album-wrap{max-width:520px;margin:40px auto 0;display:flex;flex-direction:column;align-items:center;gap:24px}
 .album-text{font-family:var(--serif);font-size:clamp(16px,1.8vw,18px);line-height:1.8;color:var(--ink-soft);font-weight:500;max-width:480px}
-.album-qr{width:180px;height:180px;background:var(--paper);border:1px solid var(--hair-gold);border-radius:12px;display:flex;align-items:center;justify-content:center;padding:14px}
+.album-qr{width:min(280px,76vw);height:min(280px,76vw);background:#f6f0e6;border:1px solid var(--hair-gold);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:14px;box-shadow:0 10px 28px rgba(85,16,41,.12)}
 .album-qr img{width:100%;height:100%;object-fit:contain}
 .album-qr-pending{font-family:var(--sans);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-soft);opacity:.6;line-height:1.8;padding:0 16px}
 .album-btn{display:inline-block;padding:15px 36px;border:1px solid var(--accent-deep);font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--accent-deep);text-decoration:none;transition:all .4s;cursor:pointer}
@@ -989,6 +989,9 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
 .pf-corner.tr{top:5px;right:5px;transform:scaleX(-1)}
 .pf-corner.bl{bottom:5px;left:5px;transform:scaleY(-1)}
 .pf-corner.br{bottom:5px;right:5px;transform:scale(-1,-1)}
+
+/* ---- Video del header (H2) sobre la foto (H1) ---- */
+.hero-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:1;opacity:1;filter:saturate(1.05) contrast(1.02) brightness(.92);pointer-events:none}
 </style>
 </head>
 <body>
@@ -1049,7 +1052,10 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
   <!-- HERO -->
   <section class="hero">
     <div class="hero-bg-wrap">
-      <img class="hero-bg" src="acuarela-salon.webp" alt="Ilustración en acuarela del salón Montecielo" fetchpriority="high" loading="eager">
+      <img class="hero-bg" src="hero-foto.webp" alt="Ilustración en acuarela del venio" fetchpriority="high" loading="eager">
+      <video class="hero-vid" muted playsinline preload="auto">
+        <source src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/video/boda-fernanda-y-ricardo/hero.mp4" type="video/mp4">
+      </video>
     </div>
     <div class="hero-bg-overlay"></div>
     <div class="hero-frame"></div>
@@ -1468,7 +1474,7 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
       <h2>Nuestro <em>álbum</em></h2>
       <div class="album-wrap">
         <p class="album-text">Después de la boda, sube tus fotos y videos a nuestro álbum compartido. Será nuestro recuerdo colectivo de esta noche tan especial.</p>
-        <div class="album-qr"><span class="album-qr-pending">QR<br>por confirmar</span></div>
+        <div class="album-qr"><img src="album-qr.png" alt="Código QR del álbum compartido"></div>
         <a class="album-btn" aria-disabled="true" href="#">Enlace por confirmar</a>
       </div>
     </div>
@@ -1509,8 +1515,7 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
           </div>
 
           <button class="rsvp-btn" id="rsvp-wa-btn" type="button">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.59 5.337l-.999 3.648 3.908-1.024z"/></svg>
-            <span>Confirmar por WhatsApp</span>
+            <span>Confirmar</span>
           </button>
 
           <div class="rsvp-deadline">
@@ -1624,6 +1629,15 @@ function launchInvitation(){
     .fromTo('.hero-place',{opacity:0,y:10},{opacity:1,y:0,duration:.8},'-=.4')
     .fromTo('.hero-scroll',{opacity:0},{opacity:.7,duration:.8},'-=.3');
   startParticles();
+  // Header: reproducir video H2 una vez; al terminar, fundir a la foto H1
+  (function(){
+    var hv = document.querySelector('.hero-vid');
+    if(!hv) return;
+    try{ hv.currentTime = 0; }catch(e){}
+    var p = hv.play();
+    if(p && p.catch) p.catch(function(){ gsap.to(hv,{opacity:0,duration:.6}); });
+    hv.addEventListener('ended', function(){ gsap.to(hv,{opacity:0,duration:1.2,ease:'power2.inOut'}); }, {once:true});
+  })();
   if(window.ScrollTrigger) ScrollTrigger.refresh();
 }
 
@@ -1865,7 +1879,7 @@ gsap.fromTo('.dress-note--bottom',{opacity:0,y:14},{opacity:1,y:0,duration:1,scr
   if (!ring || cards.length === 0) return;
 
   var n       = cards.length;
-  var radius  = 300;
+  var radius  = 265;
   var rot     = 0;
   var vel     = 0;
   var isDrag  = false;

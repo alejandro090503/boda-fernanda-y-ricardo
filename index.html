@@ -1011,11 +1011,10 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
 
 <!-- ENVELOPE OPENING -->
 <div id="envelope-screen" role="button" aria-label="Toca para abrir la invitación" tabindex="0">
-  <div id="env-image" style="display:flex;align-items:center;justify-content:center">
-    <div id="env-paper"></div>
-    <div id="env-fold"></div>
-    <div id="env-mono">R<span style="font-size:.58em;vertical-align:.12em">&amp;</span>F</div>
-  </div>
+  <img id="env-image" src="sobre.webp" alt="">
+  <video id="env-video" muted playsinline preload="auto">
+    <source src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/video/boda-fernanda-y-ricardo/sobre.mp4" type="video/mp4">
+  </video>
   <div id="env-hint">Toca para abrir</div>
 </div>
 <div id="env-flash" aria-hidden="true"></div>
@@ -1636,7 +1635,7 @@ function launchInvitation(){
   const wrap      = document.querySelector('.wrap');
   if(!envScreen || !envImage) return;
 
-  const VIDEO_CUT = 3; // segundos máximos del video
+  const VIDEO_CUT = 7.2; // segundos máximos del video (dura 8s)
   let opened = false, flashed = false;
 
   // Mostrar imagen del sobre al cargar
@@ -1662,7 +1661,6 @@ function launchInvitation(){
       envScreen.style.display='none';
       wrap.style.visibility='visible';
       launchInvitation();
-      startMusic();
       gsap.to(envFlash,{opacity:0,duration:1.2,ease:'power2.inOut',delay:.1,onComplete:()=>{envFlash.style.display='none'}});
     }});
   }
@@ -1670,6 +1668,9 @@ function launchInvitation(){
   function openEnvelope(){
     if(opened) return;
     opened = true;
+
+    // Música arranca al abrir el sobre (gesto del usuario)
+    startMusic();
 
     // Ocultar hint
     gsap.to(envHint,{opacity:0,duration:.25});

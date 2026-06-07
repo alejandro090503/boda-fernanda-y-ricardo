@@ -842,24 +842,26 @@ footer{background:linear-gradient(160deg,#efe2c8 0%,#f1e7d2 35%,#f3ecdd 65%,#fdf
    Ivory + sage/olivo + títulos en script + textura de papel
    ================================================================== */
 :root{
-  --bg:#e9e5d6;
-  --surface:#e3decd;
-  --paper:#f3efe1;
-  --sage:#6b6f43;
-  --sage-deep:#545a39;
-  --sage-band:#7c8264;
-  --accent:#6b6f43;
-  --accent-soft:#9a9e6f;
-  --accent-deep:#545a39;
-  --gold:#c9912f;
-  --gold-soft:#e3bd6f;
-  --gold-deep:#8f5e15;
+  --bg:#efe7d7;
+  --surface:#e7dcc6;
+  --paper:#f6f0e6;
+  --taupe:#d4c5b2;
+  --olive:#8d8c00;
+  --sage:#ad3e00;        /* óxido · eyebrows e iconos */
+  --sage-deep:#551029;   /* burdeos · botones */
+  --sage-band:#551029;   /* banda countdown burdeos */
+  --accent:#8d8c00;      /* olivo · marca de agua / acentos */
+  --accent-soft:#a8a23a;
+  --accent-deep:#551029; /* burdeos · títulos */
+  --gold:#d38301;        /* ámbar · hairlines y ornamentos */
+  --gold-soft:#e9b257;
+  --gold-deep:#ad3e00;   /* óxido · etiquetas pequeñas */
   --wine:#791a3d;
   --copper:#ad3e00;
-  --ink:#3a3527;
-  --ink-soft:#6a6450;
-  --hair:color-mix(in srgb, var(--sage-deep) 16%, transparent);
-  --hair-gold:color-mix(in srgb, var(--gold) 30%, transparent);
+  --ink:#2b1410;
+  --ink-soft:#5c3a2e;
+  --hair:color-mix(in srgb, var(--accent-deep) 14%, transparent);
+  --hair-gold:color-mix(in srgb, var(--gold) 32%, transparent);
   --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
 }
 /* Textura de papel en cada sección */
@@ -887,7 +889,7 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
 .album-btn{background:var(--sage-deep);color:#fff;border:none;border-radius:7px}
 .album-btn:hover{background:var(--sage);color:#fff}
 .album-btn[aria-disabled="true"]{background:transparent;color:var(--sage);border:1px dashed var(--sage)}
-.rsvp-btn{background:var(--sage-deep)!important;color:#fff!important;border:none!important;box-shadow:0 8px 24px rgba(84,90,57,.35)!important}
+.rsvp-btn{background:var(--sage-deep)!important;color:#fff!important;border:none!important;box-shadow:0 8px 24px rgba(85,16,41,.32)!important}
 .rsvp-btn::after{background:var(--sage)!important}
 
 /* Countdown · banda olivo, números crema sin cajas (ref) */
@@ -908,7 +910,7 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
 
 /* ---- ENVELOPE INTRO estilo referencia (papel sage + monograma dorado) ---- */
 #envelope-screen{background:
-   radial-gradient(120% 90% at 50% 30%, #8a8f66 0%, #6f7449 55%, #5a5e3a 100%);
+   radial-gradient(120% 90% at 50% 30%, #7a1d3a 0%, #551029 55%, #3c0b1d 100%);
    background-blend-mode:soft-light;}
 #env-paper{position:absolute;inset:0;background-image:var(--grain);opacity:.7;mix-blend-mode:soft-light;pointer-events:none}
 #env-fold{position:absolute;inset:0;pointer-events:none;
@@ -922,8 +924,8 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
 #env-mono{position:relative;z-index:2;font-family:var(--script);font-size:clamp(72px,17vw,168px);line-height:1;
   color:#e7c873;
   text-shadow:0 1px 0 #f3e4ad,0 2px 3px rgba(120,86,20,.55),0 0 22px rgba(231,200,115,.35);}
-#env-hint{color:#f1ecd8!important;background:rgba(74,78,46,.55)!important;border-color:rgba(231,200,115,.5)!important}
-#env-hint::before,#env-hint::after{background:linear-gradient(90deg,transparent,rgba(231,200,115,.7))!important}
+#env-hint{color:#f6efdd!important;background:rgba(85,16,41,.6)!important;border-color:rgba(233,178,87,.55)!important}
+#env-hint::before,#env-hint::after{background:linear-gradient(90deg,transparent,rgba(233,178,87,.7))!important}
 
 /* ---- FOTO en óvalo con marco botánico (ref) ---- */
 .oval-photo{position:relative;width:min(420px,82vw);margin:8px auto 0;aspect-ratio:4/5}
@@ -943,16 +945,16 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
 .section-motif{display:block;margin:0 auto 4px;color:var(--gold-deep);opacity:.92}
 .section-motif.dance{width:clamp(108px,16vw,148px);height:auto}
 /* ---- Chihuahua recortado flotante (como el perrito de la referencia) ---- */
-.bienv-dog{width:clamp(150px,26vw,210px)!important;filter:drop-shadow(0 16px 20px rgba(84,90,57,.14))!important}
+.bienv-dog{width:clamp(150px,26vw,210px)!important;filter:drop-shadow(0 16px 20px rgba(85,16,41,.14))!important}
 .bienv-mono{font-size:clamp(40px,7vw,64px)!important;opacity:.85}
-/* ---- Marco de venue tipo referencia (arco + marco sage + botánica) ---- */
+/* ---- Marco de venue tipo referencia (arco + marco olivo + botánica) ---- */
 .venue-frame{position:relative;width:100%;max-width:296px;margin:0 auto 26px;padding:13px 13px 15px;
-  background:linear-gradient(160deg,#838963,#646a45);background-blend-mode:soft-light;background-image:var(--grain);
-  border-radius:8px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),inset 0 0 16px rgba(0,0,0,.20),0 12px 28px rgba(84,90,57,.26)}
-.venue-frame::after{content:"";position:absolute;inset:8px;border:1px solid rgba(231,200,115,.5);border-radius:132px 132px 5px 5px;pointer-events:none;z-index:3}
+  background:linear-gradient(160deg,#8d8c00,#5f5e00);background-blend-mode:soft-light;background-image:var(--grain);
+  border-radius:8px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),inset 0 0 16px rgba(0,0,0,.22),0 12px 28px rgba(70,60,0,.28)}
+.venue-frame::after{content:"";position:absolute;inset:8px;border:1px solid rgba(233,178,87,.55);border-radius:132px 132px 5px 5px;pointer-events:none;z-index:3}
 .venue-arch{position:relative;border-radius:128px 128px 4px 4px;overflow:hidden;background:var(--paper);aspect-ratio:1/1.18}
 .venue-arch img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.03) contrast(1.02)}
-.venue-sprig{position:absolute;width:34px;height:34px;color:rgba(231,200,115,.75);z-index:4}
+.venue-sprig{position:absolute;width:34px;height:34px;color:rgba(233,178,87,.8);z-index:4}
 .venue-sprig.tl{top:3px;left:3px}
 .venue-sprig.tr{top:3px;right:3px;transform:scaleX(-1)}
 .venue-sprig.bl{bottom:3px;left:3px;transform:scaleY(-1)}
@@ -979,10 +981,10 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
 .photo-frame{position:relative;width:min(360px,82vw);margin:16px auto 0;padding:17px;border-radius:4px;
   background:linear-gradient(145deg,#7a1d3a 0%,#551029 46%,#3c0b1d 100%);
   box-shadow:0 1px 0 rgba(255,255,255,.18) inset, 0 -2px 6px rgba(0,0,0,.35) inset, 0 20px 44px rgba(58,22,16,.34), 0 4px 12px rgba(58,22,16,.25)}
-.photo-frame::before{content:"";position:absolute;inset:11px;border:1px solid rgba(231,200,115,.6);border-radius:2px;pointer-events:none;z-index:2}
+.photo-frame::before{content:"";position:absolute;inset:11px;border:1px solid rgba(233,178,87,.6);border-radius:2px;pointer-events:none;z-index:2}
 .photo-frame-img{position:relative;overflow:hidden;border-radius:1px;aspect-ratio:4/5;box-shadow:0 0 0 1px rgba(0,0,0,.3), inset 0 0 22px rgba(0,0,0,.28)}
 .photo-frame-img img{width:100%;height:100%;object-fit:cover;object-position:center 26%;filter:sepia(.32) saturate(.9) contrast(1.03)}
-.pf-corner{position:absolute;width:30px;height:30px;color:#e7c873;z-index:3;opacity:.92}
+.pf-corner{position:absolute;width:30px;height:30px;color:#e9b257;z-index:3;opacity:.95}
 .pf-corner.tl{top:5px;left:5px}
 .pf-corner.tr{top:5px;right:5px;transform:scaleX(-1)}
 .pf-corner.bl{bottom:5px;left:5px;transform:scaleY(-1)}

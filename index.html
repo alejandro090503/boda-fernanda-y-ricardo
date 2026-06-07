@@ -970,9 +970,23 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
 
 /* ---- TRANSPORTE · ilustración camión sobre la card ---- */
 .transporte-wrap{max-width:560px;margin:50px auto 0}
-.bus-motif{display:block;width:min(230px,64%);height:auto;margin:0 auto 4px;color:var(--sage-deep);opacity:.92}
+.bus-motif{display:block;width:min(196px,54%);height:auto;margin:0 auto 2px}
+.dress-dance{opacity:1!important;color:initial!important}
 .transporte{flex-direction:column!important;text-align:center!important;align-items:center!important;gap:0!important}
 .transporte .transporte-txt strong{margin-top:0}
+
+/* ---- Marco de foto burgundy (#551029) en "Nuestro gran día" ---- */
+.photo-frame{position:relative;width:min(360px,82vw);margin:16px auto 0;padding:17px;border-radius:4px;
+  background:linear-gradient(145deg,#7a1d3a 0%,#551029 46%,#3c0b1d 100%);
+  box-shadow:0 1px 0 rgba(255,255,255,.18) inset, 0 -2px 6px rgba(0,0,0,.35) inset, 0 20px 44px rgba(58,22,16,.34), 0 4px 12px rgba(58,22,16,.25)}
+.photo-frame::before{content:"";position:absolute;inset:11px;border:1px solid rgba(231,200,115,.6);border-radius:2px;pointer-events:none;z-index:2}
+.photo-frame-img{position:relative;overflow:hidden;border-radius:1px;aspect-ratio:4/5;box-shadow:0 0 0 1px rgba(0,0,0,.3), inset 0 0 22px rgba(0,0,0,.28)}
+.photo-frame-img img{width:100%;height:100%;object-fit:cover;object-position:center 26%;filter:sepia(.32) saturate(.9) contrast(1.03)}
+.pf-corner{position:absolute;width:30px;height:30px;color:#e7c873;z-index:3;opacity:.92}
+.pf-corner.tl{top:5px;left:5px}
+.pf-corner.tr{top:5px;right:5px;transform:scaleX(-1)}
+.pf-corner.bl{bottom:5px;left:5px;transform:scaleY(-1)}
+.pf-corner.br{bottom:5px;right:5px;transform:scale(-1,-1)}
 </style>
 </head>
 <body>
@@ -1118,55 +1132,12 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
           <div class="date-lbl">Sábado</div>
         </div>
       </div>
-      <div class="oval-photo">
-        <img src="foto1.webp" alt="Fernanda y Ricardo">
-        <span class="oval-ring"></span>
-        <svg class="oval-frame" viewBox="0 0 200 250" fill="none" aria-hidden="true">
-          <defs>
-            <g id="rose" stroke="currentColor" stroke-width=".9" fill="none" stroke-linecap="round">
-              <circle r="1.5"/>
-              <path d="M0 -1.6 A3 3 0 1 1 -2.7 1.2"/>
-              <path d="M2 -3.4 A5 5 0 1 1 -4.4 2"/>
-              <path d="M4.4 -3.2 A6.8 6.8 0 1 1 -5.6 3.6"/>
-            </g>
-            <g id="leaf2" stroke="currentColor" stroke-width=".9" fill="none" stroke-linecap="round">
-              <path d="M0 0 Q7 -4 13 -1 Q7 2 0 0Z"/>
-              <path d="M0 0 Q7 4 13 1 Q7 -2 0 0Z"/>
-            </g>
-          </defs>
-          <g stroke="currentColor" stroke-width=".8" fill="none" stroke-linecap="round" opacity=".9">
-            <!-- guirnalda: vid alrededor del óvalo -->
-            <path d="M100 4 Q56 12 36 50 Q16 86 18 125 Q16 164 36 200 Q56 238 100 246 Q144 238 164 200 Q184 164 182 125 Q184 86 164 50 Q144 12 100 4"/>
-          </g>
-          <!-- rosas distribuidas -->
-          <use href="#rose" transform="translate(100,9) scale(1.2)"/>
-          <use href="#rose" transform="translate(45,40) scale(1.35)"/>
-          <use href="#rose" transform="translate(155,40) scale(1.35)"/>
-          <use href="#rose" transform="translate(22,118) scale(1.5)"/>
-          <use href="#rose" transform="translate(178,118) scale(1.5)"/>
-          <use href="#rose" transform="translate(45,210) scale(1.35)"/>
-          <use href="#rose" transform="translate(155,210) scale(1.35)"/>
-          <use href="#rose" transform="translate(100,242) scale(1.2)"/>
-          <use href="#rose" transform="translate(26,80) scale(1)"/>
-          <use href="#rose" transform="translate(174,80) scale(1)"/>
-          <use href="#rose" transform="translate(26,170) scale(1)"/>
-          <use href="#rose" transform="translate(174,170) scale(1)"/>
-          <!-- hojas de relleno -->
-          <g opacity=".8">
-            <use href="#leaf2" transform="translate(70,18) rotate(28) scale(.9)"/>
-            <use href="#leaf2" transform="translate(130,18) rotate(152) scale(.9)"/>
-            <use href="#leaf2" transform="translate(30,58) rotate(70) scale(.9)"/>
-            <use href="#leaf2" transform="translate(170,58) rotate(110) scale(.9)"/>
-            <use href="#leaf2" transform="translate(17,98) rotate(92) scale(.9)"/>
-            <use href="#leaf2" transform="translate(183,98) rotate(88) scale(.9)"/>
-            <use href="#leaf2" transform="translate(17,150) rotate(268) scale(.9)"/>
-            <use href="#leaf2" transform="translate(183,150) rotate(272) scale(.9)"/>
-            <use href="#leaf2" transform="translate(30,192) rotate(290) scale(.9)"/>
-            <use href="#leaf2" transform="translate(170,192) rotate(250) scale(.9)"/>
-            <use href="#leaf2" transform="translate(70,232) rotate(332) scale(.9)"/>
-            <use href="#leaf2" transform="translate(130,232) rotate(208) scale(.9)"/>
-          </g>
-        </svg>
+      <div class="photo-frame">
+        <div class="photo-frame-img"><img src="foto1.webp" alt="Fernanda y Ricardo"></div>
+        <svg class="pf-corner tl" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true"><path d="M5 5 L18 5 M5 5 L5 18"/><path d="M5 18 Q5 28 15 28 Q21 28 21 21 Q21 16 16 16"/><path d="M18 5 Q28 5 28 15 Q28 21 21 21 Q16 21 16 16"/><circle cx="7" cy="7" r="1.3" fill="currentColor" stroke="none"/></svg>
+        <svg class="pf-corner tr" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true"><path d="M5 5 L18 5 M5 5 L5 18"/><path d="M5 18 Q5 28 15 28 Q21 28 21 21 Q21 16 16 16"/><path d="M18 5 Q28 5 28 15 Q28 21 21 21 Q16 21 16 16"/><circle cx="7" cy="7" r="1.3" fill="currentColor" stroke="none"/></svg>
+        <svg class="pf-corner bl" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true"><path d="M5 5 L18 5 M5 5 L5 18"/><path d="M5 18 Q5 28 15 28 Q21 28 21 21 Q21 16 16 16"/><path d="M18 5 Q28 5 28 15 Q28 21 21 21 Q16 21 16 16"/><circle cx="7" cy="7" r="1.3" fill="currentColor" stroke="none"/></svg>
+        <svg class="pf-corner br" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true"><path d="M5 5 L18 5 M5 5 L5 18"/><path d="M5 18 Q5 28 15 28 Q21 28 21 21 Q21 16 16 16"/><path d="M18 5 Q28 5 28 15 Q28 21 21 21 Q16 21 16 16"/><circle cx="7" cy="7" r="1.3" fill="currentColor" stroke="none"/></svg>
       </div>
     </div>
   </section>
@@ -1321,41 +1292,7 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
 
       <!-- TRANSPORTE -->
       <div class="transporte-wrap">
-        <svg class="bus-motif" viewBox="0 0 220 168" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <!-- templo al fondo -->
-          <g stroke-width="1.3" opacity=".9">
-            <path d="M150 50 L150 30 L162 22 L174 30 L174 50"/>
-            <path d="M162 22 L162 14"/><path d="M158 17 L166 17"/>
-            <path d="M146 50 L178 50"/>
-            <rect x="159" y="40" width="6" height="10"/>
-          </g>
-          <!-- arbolitos -->
-          <g stroke-width="1.3" opacity=".85">
-            <path d="M44 56 C36 56 34 46 42 44 C40 36 52 34 54 42 C62 42 62 52 54 54"/>
-            <path d="M48 54 L48 66"/>
-            <path d="M196 60 C190 60 188 52 194 50 C193 44 202 43 204 49 C210 49 210 57 204 59"/>
-            <path d="M200 58 L200 68"/>
-          </g>
-          <!-- camino sinuoso -->
-          <path d="M150 52 C150 70 120 76 118 92 C116 108 150 112 150 130" stroke-width="1.4" opacity=".75"/>
-          <path d="M138 56 C138 72 110 80 110 94" stroke-width="1.2" opacity=".5" stroke-dasharray="2 5"/>
-          <!-- camión -->
-          <g stroke-width="1.7">
-            <path d="M40 150 L40 116 C40 110 44 106 50 106 L150 106 C158 106 162 110 168 118 L176 130 C178 133 178 138 178 142 L178 150"/>
-            <path d="M40 150 L178 150"/>
-            <!-- ventanas -->
-            <path d="M52 112 L96 112 L96 126 L52 126 Z"/>
-            <path d="M104 112 L138 112 L146 124 L104 124 Z"/>
-            <!-- pasajeros (siluetas) -->
-            <circle cx="64" cy="120" r="3"/><circle cx="78" cy="120" r="3"/><circle cx="118" cy="119" r="3"/>
-            <!-- detalles frontales -->
-            <path d="M168 132 L176 132"/><circle cx="172" cy="144" r="2.4"/>
-            <path d="M40 134 L52 134"/>
-            <!-- ruedas -->
-            <circle cx="70" cy="150" r="9"/><circle cx="70" cy="150" r="3"/>
-            <circle cx="150" cy="150" r="9"/><circle cx="150" cy="150" r="3"/>
-          </g>
-        </svg>
+        <img class="bus-motif" src="camion.webp" alt="Traslado al evento" loading="lazy">
         <div class="transporte">
         <div class="transporte-txt">
           <strong>Transporte</strong>
@@ -1375,28 +1312,7 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
       <h2>Elegante <em>Formal</em></h2>
 
       <div class="dress-block">
-        <svg class="dress-dance" viewBox="0 0 560 190" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <defs>
-            <g id="couple">
-              <circle cx="74" cy="34" r="9.5"/>
-              <path d="M74 44 C72 60 75 76 78 90"/>
-              <path d="M78 90 C76 112 73 130 70 152"/>
-              <path d="M78 90 C86 110 93 130 99 152"/>
-              <path d="M74 56 C90 62 106 60 120 53"/>
-              <circle cx="132" cy="42" r="8.5"/>
-              <path d="M132 50 C129 60 124 70 119 79"/>
-              <path d="M120 53 C112 60 112 71 119 79"/>
-              <path d="M130 50 C146 53 157 45 167 35"/>
-              <path d="M119 79 C99 94 92 122 106 152 C128 164 158 158 182 150 C162 122 150 94 119 79 Z"/>
-              <path d="M124 86 C116 108 117 132 126 152" opacity=".55"/>
-              <path d="M146 96 C154 118 159 134 158 151" opacity=".55"/>
-              <path d="M134 90 C132 112 135 134 142 152" opacity=".45"/>
-            </g>
-          </defs>
-          <use href="#couple" transform="translate(6,16) scale(.74)"/>
-          <use href="#couple" transform="translate(198,4) scale(.86)"/>
-          <use href="#couple" transform="translate(402,16) scale(.74)"/>
-        </svg>
+        <img class="dress-dance" src="parejas-bailando.webp" alt="Parejas vestidas de gala" loading="lazy">
         <div class="dress-card">
           <h3 class="dress-card-title">Etiqueta formal</h3>
           <p>Les pedimos vestir formalmente para acompañarnos en este día tan especial.</p>

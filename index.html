@@ -1009,11 +1009,7 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
 
 /* ---- Imágenes con bordes difuminados (sin marco) ---- */
 .soft-img{width:100%;max-width:340px;margin:0 auto 26px}
-.soft-img img{display:block;width:100%;height:auto;
-  -webkit-mask-image:radial-gradient(ellipse 78% 82% at 50% 50%, #000 26%, rgba(0,0,0,.5) 55%, transparent 78%);
-  -webkit-mask-size:cover;-webkit-mask-position:center;
-  mask-image:radial-gradient(ellipse 78% 82% at 50% 50%, #000 26%, rgba(0,0,0,.5) 55%, transparent 78%);
-  mask-size:cover;mask-position:center;}
+.soft-img img{display:block;width:100%;height:auto;-webkit-mask-image:none;mask-image:none}
 .soft-photo{width:min(430px,84vw);margin:14px auto 0}
 .soft-photo img{display:block;width:100%;height:auto;border-radius:4px;filter:saturate(.96) contrast(1.02);
   -webkit-mask-image:radial-gradient(ellipse 80% 84% at 50% 50%, #000 30%, rgba(0,0,0,.5) 58%, transparent 82%);

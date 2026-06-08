@@ -405,8 +405,8 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:600;color:var(--gold)}
 .itin-icon-wrap svg{width:23px;height:23px;stroke:currentColor;stroke-width:1.4;fill:none;stroke-linecap:round;stroke-linejoin:round;}
 /* texto ocupa mitad del ítem menos el radio del icono */
 .itin-text{
-  width:calc(50% - 34px);
-  padding:0 8px;
+  width:calc(50% - 26px);
+  padding:0 6px;
 }
 .itin-text--left{
   text-align:right;
@@ -417,7 +417,7 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:600;color:var(--gold)}
   margin-left:auto;
 }
 .itin-time{font-family:var(--italiana);font-size:19px;letter-spacing:.18em;color:var(--gold);display:block;line-height:1.2;font-weight:400;text-shadow:0 1px 8px rgba(201,160,68,.35);}
-.itin-ev{font-family:var(--sans);font-weight:600;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);line-height:1.55;margin-top:3px;overflow-wrap:break-word;word-break:break-word;hyphens:auto;}
+.itin-ev{font-family:var(--sans);font-weight:600;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);line-height:1.5;margin-top:4px;overflow-wrap:normal;word-break:keep-all;hyphens:none;}
 .itin-sub{font-family:var(--serif);font-style:italic;font-size:11.5px;color:var(--ink-soft);margin-top:2px;line-height:1.4;}
 @media(max-width:380px){
   .itin-ev{font-size:9px;letter-spacing:.12em;}
@@ -1010,27 +1010,37 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
 /* ---- Imágenes con bordes difuminados (sin marco) ---- */
 .soft-img{width:100%;max-width:340px;margin:0 auto 26px}
 .soft-img img{display:block;width:100%;height:auto;
-  -webkit-mask-image:radial-gradient(ellipse 86% 88% at 50% 50%, #000 62%, transparent 99%);
-  mask-image:radial-gradient(ellipse 86% 88% at 50% 50%, #000 62%, transparent 99%);}
+  -webkit-mask-image:radial-gradient(ellipse 96% 98% at 50% 50%, #000 42%, rgba(0,0,0,.55) 70%, transparent 94%);
+  mask-image:radial-gradient(ellipse 96% 98% at 50% 50%, #000 42%, rgba(0,0,0,.55) 70%, transparent 94%);}
 .soft-photo{width:min(430px,84vw);margin:14px auto 0}
 .soft-photo img{display:block;width:100%;height:auto;border-radius:4px;filter:saturate(.96) contrast(1.02);
-  -webkit-mask-image:radial-gradient(ellipse 88% 90% at 50% 50%, #000 60%, transparent 99%);
-  mask-image:radial-gradient(ellipse 88% 90% at 50% 50%, #000 60%, transparent 99%);}
+  -webkit-mask-image:radial-gradient(ellipse 96% 98% at 50% 50%, #000 44%, rgba(0,0,0,.55) 72%, transparent 95%);
+  mask-image:radial-gradient(ellipse 96% 98% at 50% 50%, #000 44%, rgba(0,0,0,.55) 72%, transparent 95%);}
 .date-full{font-family:var(--italiana);font-size:clamp(19px,2.6vw,26px);letter-spacing:.18em;text-transform:uppercase;color:var(--accent-deep);margin-top:24px}
 /* Venues sin tarjeta: imagen difuminada flotando sobre el papel */
 .locs .loc-card{background:transparent!important;border:none!important;box-shadow:none!important;padding:8px 14px 10px!important}
 .locs .loc-card::before{display:none!important}
 .locs .loc-card .soft-img{max-width:380px}
 
-/* ---- Indicador "Desliza" permanente ---- */
-#scroll-hint{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:8000;
-  display:flex;flex-direction:column;align-items:center;gap:5px;pointer-events:none;
-  font-family:var(--sans);font-size:9.5px;font-weight:600;letter-spacing:.42em;text-transform:uppercase;
-  color:var(--accent-deep);opacity:.78;transition:opacity .5s}
-#scroll-hint .sh-chev{width:15px;height:15px;animation:shBob 1.8s ease-in-out infinite}
-#scroll-hint .sh-chev svg{width:100%;height:100%;stroke:var(--gold-deep);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+/* ---- Indicador "Desliza" · botón tipo gota / espejo de agua ---- */
+#scroll-hint{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:8000;
+  display:flex;flex-direction:column;align-items:center;gap:2px;pointer-events:none;overflow:hidden;
+  padding:9px 22px 7px;padding-left:calc(22px + .4em);border-radius:24px;
+  font-family:var(--sans);font-size:9.5px;font-weight:700;letter-spacing:.4em;text-transform:uppercase;
+  color:var(--accent-deep);
+  background:linear-gradient(180deg, rgba(255,255,255,.62) 0%, rgba(246,240,230,.34) 100%);
+  -webkit-backdrop-filter:blur(10px) saturate(1.5);backdrop-filter:blur(10px) saturate(1.5);
+  border:1px solid rgba(255,255,255,.65);
+  box-shadow:0 10px 26px rgba(85,16,41,.18), 0 2px 6px rgba(85,16,41,.10), inset 0 1px 0 rgba(255,255,255,.9), inset 0 -5px 12px rgba(85,16,41,.06);
+  transition:opacity .5s;animation:shFloat 3.2s ease-in-out infinite}
+#scroll-hint::before{content:"";position:absolute;top:2px;left:16%;right:16%;height:44%;border-radius:22px;
+  background:linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,0));pointer-events:none}
+#scroll-hint > span:first-child{position:relative;z-index:1}
+#scroll-hint .sh-chev{position:relative;z-index:1;width:14px;height:14px;animation:shBob 1.8s ease-in-out infinite}
+#scroll-hint .sh-chev svg{width:100%;height:100%;stroke:var(--gold-deep);stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 #scroll-hint.is-hidden{opacity:0}
-@keyframes shBob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+@keyframes shBob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+@keyframes shFloat{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-3px)}}
 
 /* ---- Hospedaje ---- */
 .hospedaje{text-align:center}
@@ -1346,7 +1356,7 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
         <div class="transporte">
         <div class="transporte-txt">
           <strong>Transporte</strong>
-          Contaremos con una opción de traslado (con costo) en la ruta hotel → iglesia → salón → hotel. Pregúntanos los detalles al confirmar tu asistencia.
+          Contaremos con una opción de traslado (con costo). Ruta: Hotel → Iglesia → Salón → Hotel. Pregúntanos los detalles al confirmar tu asistencia.
         </div>
         </div>
       </div>

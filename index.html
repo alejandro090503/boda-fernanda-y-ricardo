@@ -925,8 +925,21 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
 #env-mono{position:relative;z-index:2;font-family:var(--script);font-size:clamp(72px,17vw,168px);line-height:1;
   color:#e7c873;
   text-shadow:0 1px 0 #f3e4ad,0 2px 3px rgba(120,86,20,.55),0 0 22px rgba(231,200,115,.35);}
-#env-hint{color:#f6efdd!important;background:rgba(85,16,41,.6)!important;border-color:rgba(233,178,87,.55)!important}
-#env-hint::before,#env-hint::after{background:linear-gradient(90deg,transparent,rgba(233,178,87,.7))!important}
+/* Botón "Toca para abrir" — elegante, sin pill */
+#env-hint{display:flex!important;flex-direction:column;align-items:center;gap:11px;
+  background:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+  border:none!important;box-shadow:none!important;border-radius:0!important;padding:0!important;white-space:nowrap;
+  animation:ehFade 2.8s ease-in-out infinite!important}
+#env-hint::before,#env-hint::after{display:none!important}
+#env-hint .eh-row{display:flex;align-items:center;gap:16px}
+#env-hint .eh-txt{font-family:var(--sans);font-weight:600;font-size:11px;letter-spacing:.52em;text-transform:uppercase;
+  color:#5a1327;padding-left:.52em;text-shadow:0 1px 12px rgba(250,244,233,.95),0 0 3px rgba(250,244,233,.9)}
+#env-hint .eh-line{width:34px;height:1px;background:linear-gradient(90deg,transparent,#a96f1c)}
+#env-hint .eh-row .eh-line:last-child{background:linear-gradient(90deg,#a96f1c,transparent)}
+#env-hint .eh-chev{width:18px;height:18px;animation:ehBob 1.9s ease-in-out infinite}
+#env-hint .eh-chev svg{width:100%;height:100%;stroke:#9a5e12;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 6px rgba(250,244,233,.9))}
+@keyframes ehFade{0%,100%{opacity:.74}50%{opacity:1}}
+@keyframes ehBob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 
 /* ---- FOTO en óvalo con marco botánico (ref) ---- */
 .oval-photo{position:relative;width:min(420px,82vw);margin:8px auto 0;aspect-ratio:4/5}
@@ -1066,9 +1079,12 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
 <div id="envelope-screen" role="button" aria-label="Toca para abrir la invitación" tabindex="0">
   <img id="env-image" src="sobre.webp" alt="">
   <video id="env-video" muted playsinline preload="auto">
-    <source src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/video/boda-fernanda-y-ricardo/sobre.mp4" type="video/mp4">
+    <source src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/video/boda-fernanda-y-ricardo/sobre2.mp4" type="video/mp4">
   </video>
-  <div id="env-hint">Toca para abrir</div>
+  <div id="env-hint">
+    <span class="eh-row"><span class="eh-line"></span><span class="eh-txt">Toca para abrir</span><span class="eh-line"></span></span>
+    <span class="eh-chev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
+  </div>
 </div>
 <div id="env-flash" aria-hidden="true"></div>
 <!-- Audio servido desde Supabase (NO en /public) · preload none para no disparar egress -->

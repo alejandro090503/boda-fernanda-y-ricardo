@@ -85,6 +85,10 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:600;color:var(--gold)}
   margin:0 14px 4px 0;
 }
 .eyebrow::after{margin:0 0 4px 14px}
+.eyebrow--plain{padding-left:0}
+.eyebrow--plain::before,.eyebrow--plain::after{display:none}
+.kids-eyebrow-stack{display:flex;flex-direction:column;align-items:center;margin-bottom:32px}
+.kids-eyebrow-sub{margin-bottom:0}
 .hair-word{
   display:flex;align-items:center;justify-content:center;
   gap:20px;margin:40px 0;
@@ -308,31 +312,26 @@ h1 em,h2 em,h3 em{font-style:italic;font-weight:600;color:var(--gold)}
 .loc-type{font-family:var(--sans);font-size:11px;letter-spacing:.55em;text-transform:uppercase;color:var(--gold-deep);padding-left:.55em;margin-bottom:28px;font-weight:600}
 .loc-name{font-family:var(--display);font-size:26px;color:var(--accent-deep);margin-bottom:20px;line-height:1.25;font-weight:500}
 .loc-time{font-family:var(--display);font-style:italic;font-size:22px;color:var(--gold-deep);margin-bottom:24px;font-variant-numeric:tabular-nums}
+.loc-schedule{display:grid;grid-template-columns:auto auto;column-gap:14px;row-gap:8px;justify-content:center;align-items:baseline;margin:6px auto 22px;width:fit-content}
+.loc-sch-row{display:contents}
+.loc-sch-row .loc-sch-time,.loc-sch-row .loc-sch-ev{border-bottom:1px dashed color-mix(in srgb,var(--gold-deep) 35%,transparent);padding-bottom:6px}
+.loc-sch-row:last-child .loc-sch-time,.loc-sch-row:last-child .loc-sch-ev{border-bottom:none}
+.loc-sch-time{font-family:var(--display);font-style:italic;font-size:18px;color:var(--gold-deep);font-variant-numeric:tabular-nums;text-align:right}
+.loc-sch-ev{font-family:var(--serif);font-size:14px;color:var(--ink-soft);text-align:left}
 .loc-addr{font-family:var(--serif);font-size:16px;color:var(--ink-soft);line-height:1.7;margin-bottom:32px;font-weight:500}
 .loc-btn{display:inline-block;padding:15px 34px;border:1px solid var(--accent-deep);background:transparent;font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.4em;text-transform:uppercase;color:var(--accent-deep);text-decoration:none;padding-left:calc(34px + .4em);transition:all .5s cubic-bezier(.2,.7,.2,1);cursor:pointer;min-height:48px;position:relative;overflow:hidden;}
 .loc-btn::before{content:"";position:absolute;inset:0;background:var(--accent-deep);transform:translateY(101%);transition:transform .5s cubic-bezier(.2,.7,.2,1);z-index:-1;}
 .loc-btn:hover{color:var(--paper)}
 .loc-btn:hover::before{transform:translateY(0)}
 
-/* -- Ubicación card única -- */
+/* -- Ubicación card única (legacy, no usado) -- */
 .loc-card--single{padding:48px 40px 40px}
-.loc-schedule{
-  display:flex;align-items:center;justify-content:center;
-  gap:0;flex-wrap:wrap;margin:28px 0 36px;
-}
-.loc-sched-item{text-align:center;padding:0 28px}
-.loc-sched-label{font-family:var(--sans);font-size:11px;letter-spacing:.45em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;padding-left:.45em;margin-bottom:8px}
-.loc-sched-time{font-family:var(--display);font-style:italic;font-size:clamp(20px,3vw,28px);color:var(--gold-deep)}
-.loc-sched-sep{width:1px;height:48px;background:var(--hair-gold);flex-shrink:0}
 .loc-map-wrap{
   width:100%;height:320px;border-radius:2px;overflow:hidden;
   border:1px solid var(--hair-gold);position:relative;
 }
 .loc-map-wrap iframe{display:block}
 @media(max-width:600px){
-  .loc-sched-sep{display:none}
-  .loc-sched-item{border-top:1px solid var(--hair-gold);width:100%;padding:16px 0}
-  .loc-schedule{flex-direction:column;gap:0}
   .loc-map-wrap{height:240px}
 }
 
@@ -815,6 +814,13 @@ footer{background:linear-gradient(160deg,#efe2c8 0%,#f1e7d2 35%,#f3ecdd 65%,#fdf
 .kids-icon{color:var(--gold);margin:0 auto 22px;width:48px;height:48px}
 .kids-icon svg{width:100%;height:100%;stroke:currentColor;stroke-width:1.1;fill:none}
 .kids-text{font-family:var(--serif);font-size:clamp(17px,1.9vw,19px);line-height:1.8;color:var(--ink-soft);max-width:600px;margin:26px auto 0;font-weight:500}
+.kids-only{font-family:var(--display);font-style:italic;font-size:clamp(28px,3.6vw,40px);color:var(--accent-deep);line-height:1.25;letter-spacing:.01em;text-align:center;font-weight:500}
+.kids-only--sub{margin-top:8px;color:var(--ink-soft);font-style:normal;font-family:var(--italiana);text-transform:uppercase;letter-spacing:.22em;font-size:clamp(15px,1.7vw,18px)}
+.itin-multi{display:flex;flex-direction:column;gap:6px;margin-top:2px}
+.itin-multi-row{display:flex;align-items:baseline;gap:10px;justify-content:flex-end}
+.itin-text--left .itin-multi-row{justify-content:flex-start}
+.itin-multi-row .itin-time{font-size:14px!important;letter-spacing:.12em!important;line-height:1.2}
+.itin-multi-ev{font-family:var(--sans);font-weight:600;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink)}
 
 /* ============ CLABE (mesa de regalos) ============ */
 .clabe-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;max-width:760px;margin:44px auto 0}
@@ -822,7 +828,7 @@ footer{background:linear-gradient(160deg,#efe2c8 0%,#f1e7d2 35%,#f3ecdd 65%,#fdf
 .clabe-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold) 30%,var(--gold) 70%,transparent)}
 .clabe-bank{font-family:var(--sans);font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-deep);font-weight:700;margin-bottom:6px}
 .clabe-holder{font-family:var(--display);font-style:italic;font-size:21px;color:var(--accent-deep);margin-bottom:18px}
-.clabe-num{font-family:var(--italiana);font-size:17px;letter-spacing:.1em;color:var(--ink);border-top:1px solid var(--hair-gold);border-bottom:1px solid var(--hair-gold);padding:13px 6px;margin-bottom:12px;cursor:pointer;word-break:break-all;transition:color .25s}
+.clabe-num{font-family:'SF Mono',ui-monospace,Menlo,Consolas,'Courier New',monospace;font-size:18px;letter-spacing:.05em;color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums;border-top:1px solid var(--hair-gold);border-bottom:1px solid var(--hair-gold);padding:13px 6px;margin-bottom:12px;cursor:pointer;word-break:break-all;transition:color .25s}
 .clabe-num:hover{color:var(--gold)}
 .clabe-hint{font-family:var(--sans);font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-deep);opacity:.7}
 
@@ -982,7 +988,9 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
 .dress-card p{font-family:var(--serif);font-size:clamp(16px,1.8vw,18px);line-height:1.72;color:var(--ink-soft);margin:0 auto 15px;max-width:470px;font-weight:500}
 .dress-card p strong{color:var(--accent-deep);font-weight:700}
 .dress-card .dress-tip{font-style:italic;font-size:clamp(15px,1.7vw,16.5px)}
-.dress-card .dress-avoid{margin:26px auto 0;border-top:1px solid var(--hair-gold);padding-top:26px}
+.dress-card .dress-avoid{margin:26px auto 0;border-top:1px solid var(--hair-gold);padding-top:26px;text-align:center}
+.color-dots{display:flex;justify-content:center;gap:12px;margin-top:8px}
+.color-dots .dot{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--ink-soft);display:inline-block}
 
 /* ---- TRANSPORTE · ilustración camión sobre la card ---- */
 .transporte-wrap{max-width:560px;margin:50px auto 0}
@@ -1089,16 +1097,15 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
 <div id="envelope-screen" role="button" aria-label="Toca para abrir la invitación" tabindex="0">
   <img id="env-image" src="sobre.webp" alt="">
   <video id="env-video" muted playsinline preload="auto">
-    <source src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/video/boda-fernanda-y-ricardo/sobre4.mp4" type="video/mp4">
+    <source src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/video/boda-fernanda-y-ricardo/sobre5.mp4" type="video/mp4">
   </video>
   <div id="env-hint">
     <span class="eh-row"><span class="eh-line"></span><span class="eh-txt">Toca para abrir</span><span class="eh-line"></span></span>
-    <span class="eh-chev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></span>
   </div>
 </div>
 <div id="env-flash" aria-hidden="true"></div>
-<!-- Audio servido desde Supabase (NO en /public) · preload none para no disparar egress -->
-<audio id="music" src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/audio/boda-fernanda-y-ricardo/cancion.mp3" preload="none" loop></audio>
+<!-- Audio servido desde Supabase · preload metadata para que Android lo tenga listo al primer play -->
+<audio id="music" src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/audio/boda-fernanda-y-ricardo/cancion.mp3" preload="metadata" loop playsinline crossorigin="anonymous"></audio>
 <button class="vinyl-btn" id="music-btn" type="button" aria-label="Reproducir música de la invitación">
   <div class="vinyl-tonearm">
     <div class="vinyl-tonearm-pivot"></div>
@@ -1161,7 +1168,7 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
       <div class="hero-date" data-anim="hero-date">
         <span>08</span><span class="sep">·</span><span>Agosto</span><span class="sep">·</span><span>2026</span>
       </div>
-      <div class="hero-place" data-anim="hero-place">Saltillo · Coahuila</div>
+      <div class="hero-place" data-anim="hero-place">Saltillo · Arteaga · Coahuila</div>
     </div>
     <div class="hero-scroll"></div>
   </section>
@@ -1261,8 +1268,12 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
           <div class="soft-img"><img src="salon.webp" alt="Jardín y Salón Montecielo en acuarela" loading="lazy"></div>
           <div class="loc-type">Recepción</div>
           <div class="loc-name">Jardín &amp; Salón Montecielo</div>
-          <div class="loc-time">21:00</div>
-          <div class="loc-addr">Arteaga, 25354 · Coahuila<br>Civil &amp; cóctel desde las 6:30 PM</div>
+          <div class="loc-schedule">
+            <div class="loc-sch-row"><span class="loc-sch-time">18:30</span><span class="loc-sch-ev">Ceremonia Civil</span></div>
+            <div class="loc-sch-row"><span class="loc-sch-time">19:30</span><span class="loc-sch-ev">Cóctel y Fotos</span></div>
+            <div class="loc-sch-row"><span class="loc-sch-time">21:00</span><span class="loc-sch-ev">Recepción</span></div>
+          </div>
+          <div class="loc-addr">Arteaga, 25354 · Coahuila</div>
           <a class="loc-btn" href="https://maps.google.com/?cid=14833657692889864227" target="_blank" rel="noopener">Cómo llegar</a>
         </article>
 
@@ -1421,8 +1432,19 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
           <p>Les pedimos vestir formalmente para acompañarnos en este día tan especial.</p>
           <p><strong>Caballeros</strong> · Traje completo y calzado formal. Agradecemos evitar el uso de tenis, mezclilla y cualquier prenda de estilo casual.</p>
           <p><strong>Damas</strong> · Vestido largo elegante. Les agradecemos evitar los tonos plateado, dorado y claros.</p>
-          <p class="dress-tip">Recomendamos evitar el tacón de aguja: la celebración tiene área de jardín, por lo que un tacón cómodo, de bloque o flats serán mucho más cómodos.</p>
-          <p style="font-family:var(--italiana);font-size:14px;letter-spacing:.05em;color:var(--ink-soft);margin:18px auto 26px;text-transform:none">El blanco es exclusivo de la novia.</p>
+          <p class="dress-tip">Recomendamos evitar el tacón de aguja ya que el lugar de la celebración tiene área de jardín.</p>
+
+          <div class="dress-avoid">
+            <p style="font-family:var(--italiana);font-size:14px;letter-spacing:.05em;color:var(--ink-soft);margin:0 0 10px;text-transform:none">Colores a evitar</p>
+            <div class="color-dots">
+              <span class="dot" style="background:#ffffff" title="Blanco"></span>
+              <span class="dot" style="background:#f7f7f7" title="Gris claro"></span>
+              <span class="dot" style="background:#fffbe6" title="Amarillo pastel"></span>
+              <span class="dot" style="background:#eef6fd" title="Azul cielo pastel"></span>
+              <span class="dot" style="background:#fff0f4" title="Rosa pastel"></span>
+            </div>
+            <p style="font-family:var(--italiana);font-size:13px;letter-spacing:.04em;color:var(--ink-soft);margin:8px 0 0;text-transform:none">El blanco es exclusivo de la novia.</p>
+          </div>
           <button class="dress-insp-btn" id="dress-insp-btn" type="button">
             <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L7 19"/></svg>
             Ver inspiración
@@ -1456,13 +1478,16 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
 
   <div class="seam" style="--from:var(--bg);--to:var(--paper)" aria-hidden="true"></div>
 
-  <!-- SOLO ADULTOS -->
+  <!-- SOLO ADULTOS · NO NIÑOS -->
   <section class="section-paper kids-policy">
     <div class="container">
       <div class="kids-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24"><path d="M8 3h8l-1 7a3 3 0 01-6 0L8 3z"/><line x1="12" y1="13" x2="12" y2="20"/><line x1="8" y1="20" x2="16" y2="20"/></svg>
       </div>
-      <div class="eyebrow">Solo adultos</div>
+      <div class="kids-eyebrow-stack">
+        <div class="eyebrow" style="margin-bottom:8px">Solo adultos</div>
+        <div class="eyebrow eyebrow--plain kids-eyebrow-sub">No niños</div>
+      </div>
       <h2>Una noche <em>para grandes</em></h2>
       <p class="kids-text">Con todo nuestro cariño, hemos decidido que nuestra celebración sea exclusiva para adultos. Confiamos en que esta noche puedas disfrutarla con nosotros sin preocupaciones. Gracias por tu comprensión.</p>
     </div>
@@ -1597,9 +1622,24 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
             <svg class="rsvp-divider-heart" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
           </div>
 
+          <p id="rsvp-pases-note" style="display:none;font-family:var(--serif);font-style:italic;font-size:17px;color:var(--gold-deep);margin:0 auto 18px;line-height:1.5;max-width:420px;"></p>
+          <div class="rsvp-pases-display" id="rsvp-pases-display" style="display:none">
+            <span class="rsvp-pases-label">Pases</span>
+            <span class="rsvp-pases-num" id="rsvp-pases-num">…</span>
+          </div>
+
+          <div class="rsvp-toggle">
+            <button class="rsvp-toggle-btn" id="btnYes" type="button">Asistiré</button>
+            <button class="rsvp-toggle-btn" id="btnNo" type="button">No podré asistir</button>
+          </div>
+
+          <div class="rsvp-fields" id="rsvp-fields" style="display:none"></div>
+
           <button class="rsvp-btn" id="rsvp-wa-btn" type="button">
-            <span>Confirmar</span>
+            <span id="rsvp-btn-text">Confirmar Asistencia</span>
           </button>
+
+          <p id="rsvp-feedback"></p>
 
           <div class="rsvp-deadline">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5z"/></svg>
@@ -1651,17 +1691,167 @@ history.scrollRestoration='manual';
 gsap.registerPlugin(ScrollTrigger);
 const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// ------ RSVP · WHATSAPP (boton unico, sin query params) ------
+// ------ RSVP · PANEL INTEGRATION (guard silencioso + caché de nombres) ------
 (function(){
-  var WA  = '5210000000000'; // PENDIENTE: numero de WhatsApp del cliente
-  var MSG = '¡Hola! Con mucho gusto confirmo mi asistencia a la celebración de Fernanda Ruiz & Ricardo Acosta. 🎉\n¡Nos vemos pronto! 💫';
-  var btn = document.getElementById('rsvp-wa-btn');
-  if (btn) {
-    btn.addEventListener('click', function(){
-      var url = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(MSG);
-      window.open(url, '_blank');
-    });
+  var PANEL_API = 'https://panel-invitados.vercel.app/api/confirmar';
+  var RSVP_URL  = 'https://boda-fernanda-y-ricardo.vercel.app';
+  var DEADLINE  = new Date(2026, 6, 11, 23, 59, 59, 999);
+  var frozen    = Date.now() > DEADLINE.getTime();
+  var params    = new URLSearchParams(window.location.search);
+  var urlPara   = (params.get('para')  || '').trim();
+  var rawP      = parseInt(params.get('pases') || '1', 10);
+  var pasesAsignados = (isNaN(rawP) || rawP < 1 || rawP > 20) ? 1 : rawP;
+
+  var rsvpChoice = null;
+  var savedNames = [];
+  var noteEl     = document.getElementById('rsvp-pases-note');
+  var dispEl     = document.getElementById('rsvp-pases-display');
+  var numEl      = document.getElementById('rsvp-pases-num');
+  var fieldsEl   = document.getElementById('rsvp-fields');
+  var btnYes     = document.getElementById('btnYes');
+  var btnNo      = document.getElementById('btnNo');
+  var btnConf    = document.getElementById('rsvp-wa-btn');
+  var btnText    = document.getElementById('rsvp-btn-text');
+  var feedEl     = document.getElementById('rsvp-feedback');
+  if(!btnConf || !btnYes) return;
+
+  if (urlPara) {
+    noteEl.textContent = 'Esta invitación es para ' + urlPara;
+    noteEl.style.display = 'block';
+    dispEl.style.display = 'flex';
+    // Guard silencioso: bloqueamos hasta saber pases reales
+    btnYes.disabled = true;
+    btnNo.disabled  = true;
+  } else {
+    numEl.textContent = pasesAsignados;
   }
+
+  function renderFields(n) {
+    fieldsEl.innerHTML = '';
+    for (var i = 0; i < n; i++) {
+      var inp = document.createElement('input');
+      inp.type = 'text';
+      inp.className = 'rsvp-input';
+      inp.placeholder = n === 1 ? 'Tu nombre completo' : 'Invitado ' + (i + 1);
+      inp.autocomplete = 'off';
+      inp.maxLength = 60;
+      inp.value = savedNames[i] || '';
+      (function(idx){ inp.addEventListener('input', function(){ savedNames[idx] = this.value; }); })(i);
+      fieldsEl.appendChild(inp);
+    }
+  }
+
+  function selectRsvp(choice) {
+    rsvpChoice = choice;
+    if (choice === 'yes') {
+      btnYes.className = 'rsvp-toggle-btn rsvp-toggle-selected-yes';
+      btnNo.className  = 'rsvp-toggle-btn';
+      renderFields(pasesAsignados);
+      fieldsEl.style.display = 'flex';
+    } else {
+      btnYes.className = 'rsvp-toggle-btn';
+      btnNo.className  = 'rsvp-toggle-btn rsvp-toggle-selected-no';
+      fieldsEl.style.display = 'none';
+      fieldsEl.innerHTML = '';
+    }
+  }
+
+  btnYes.addEventListener('click', function(){ selectRsvp('yes'); });
+  btnNo.addEventListener('click',  function(){ selectRsvp('no');  });
+
+  if (urlPara) {
+    fetch(PANEL_API + '?nombre=' + encodeURIComponent(urlPara) + '&url_boda=' + encodeURIComponent(RSVP_URL))
+      .then(function(r){ return r.json(); })
+      .then(function(resp){
+        var d = resp.invitado;
+        if (d && typeof d.pases === 'number' && d.pases > 0 && d.pases <= 20) {
+          pasesAsignados = d.pases;  // AUTORITATIVO
+        }
+        numEl.textContent = pasesAsignados;
+        btnYes.disabled = false;
+        btnNo.disabled  = false;
+        if (d && (d.estado === 'confirmado' || d.estado === 'declino')) {
+          if (d.nombres_confirmados && d.nombres_confirmados.length) {
+            savedNames = d.nombres_confirmados.slice();
+          }
+          selectRsvp(d.estado === 'confirmado' ? 'yes' : 'no');
+          btnText.textContent = 'Actualizar respuesta';
+          feedEl.style.display = 'block';
+          feedEl.textContent = d.estado === 'confirmado'
+            ? '¡Ya tienes confirmada tu asistencia! Puedes actualizar tu respuesta.'
+            : 'Ya tienes registrado que no podrás asistir. Puedes cambiar tu respuesta.';
+        }
+      })
+      .catch(function(){
+        numEl.textContent = pasesAsignados;
+        btnYes.disabled = false;
+        btnNo.disabled  = false;
+      });
+  }
+
+  if (frozen) {
+    btnYes.disabled = true;
+    btnNo.disabled  = true;
+    btnConf.disabled = true;
+    btnText.textContent = 'Fecha límite alcanzada';
+    feedEl.style.display = 'block';
+    feedEl.textContent = 'La fecha para confirmar asistencia ha pasado.';
+  }
+
+  btnConf.addEventListener('click', function(){
+    if (frozen) return;
+    if (!rsvpChoice) {
+      feedEl.style.display = 'block';
+      feedEl.style.color = '#9a4a3a';
+      feedEl.textContent = 'Por favor selecciona si asistirás o no.';
+      return;
+    }
+    var nombres = [];
+    if (rsvpChoice === 'yes') {
+      var inputs = fieldsEl.querySelectorAll('.rsvp-input');
+      for (var i = 0; i < inputs.length; i++) {
+        var v = inputs[i].value.trim();
+        if (v) nombres.push(v);
+      }
+      if (nombres.length === 0) {
+        feedEl.style.display = 'block';
+        feedEl.style.color = '#9a4a3a';
+        feedEl.textContent = 'Por favor escribe al menos un nombre.';
+        return;
+      }
+    }
+    btnText.textContent = 'Enviando…';
+    btnConf.disabled = true;
+    feedEl.textContent = ''; feedEl.style.color = '';
+    fetch(PANEL_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nombre: urlPara || 'Invitado',
+        url_boda: RSVP_URL,
+        estado: rsvpChoice === 'yes' ? 'confirmado' : 'declino',
+        pases_confirmados: rsvpChoice === 'yes' ? nombres.length : 0,
+        nombres_confirmados: nombres
+      })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(){
+      btnText.textContent = 'Actualizar respuesta';
+      btnConf.disabled = false;
+      feedEl.style.display = 'block';
+      feedEl.style.color = 'var(--gold-deep)';
+      feedEl.textContent = rsvpChoice === 'yes'
+        ? '¡Tu asistencia ha sido confirmada! Nos vemos pronto.'
+        : 'Hemos registrado que no podrás asistir. ¡Gracias por avisarnos!';
+    })
+    .catch(function(){
+      btnText.textContent = 'Confirmar Asistencia';
+      btnConf.disabled = false;
+      feedEl.style.display = 'block';
+      feedEl.style.color = '#9a4a3a';
+      feedEl.textContent = 'Error de conexión. Intenta de nuevo.';
+    });
+  });
 })();
 
 // ------ SPLIT helpers ------
@@ -1744,13 +1934,58 @@ function launchInvitation(){
   const bgMusic  = document.getElementById('music');
   const vinylBtn = document.getElementById('music-btn');
 
+  // Fade nativo independiente de GSAP (más confiable en Android)
+  var musicFadeTimer = null;
+  function fadeVolume(target, ms){
+    if(!bgMusic) return;
+    if(musicFadeTimer) clearInterval(musicFadeTimer);
+    var start = bgMusic.volume;
+    var t0 = performance.now();
+    musicFadeTimer = setInterval(function(){
+      var t = Math.min(1, (performance.now() - t0) / ms);
+      try{ bgMusic.volume = start + (target - start) * t; }catch(e){}
+      if(t >= 1){ clearInterval(musicFadeTimer); musicFadeTimer = null; }
+    }, 40);
+  }
+
+  function tryPlay(){
+    if(!bgMusic) return Promise.reject();
+    try{ bgMusic.load(); }catch(e){}
+    var p = bgMusic.play();
+    if(p && typeof p.then === 'function') return p;
+    return Promise.resolve();
+  }
+
   function startMusic(){
     if(!bgMusic) return;
     try{ bgMusic.currentTime = 0; }catch(e){}
-    bgMusic.volume = 0;
-    bgMusic.play().catch(()=>{});
-    gsap.to(bgMusic,{volume:.45,duration:3,ease:'power1.inOut'});
+    try{ bgMusic.volume = 0; }catch(e){}
+    tryPlay().then(function(){
+      fadeVolume(.45, 3000);
+    }).catch(function(){
+      // Autoplay bloqueado en Android: dejar el botón visible y pulsante
+      try{ bgMusic.volume = .45; }catch(e){}
+    });
     if(vinylBtn) vinylBtn.classList.add('is-ready');
+  }
+
+  // Sincronizar el ícono play/pause con el estado real del audio
+  if(bgMusic && vinylBtn){
+    bgMusic.addEventListener('play',  function(){ vinylBtn.classList.add('is-playing'); });
+    bgMusic.addEventListener('pause', function(){ vinylBtn.classList.remove('is-playing'); });
+    bgMusic.addEventListener('ended', function(){ vinylBtn.classList.remove('is-playing'); });
+
+    // Click en el botón = toggle play/pause (CRÍTICO si autoplay fue bloqueado en Android)
+    vinylBtn.addEventListener('click', function(ev){
+      ev.preventDefault();
+      ev.stopPropagation();
+      if(bgMusic.paused){
+        try{ bgMusic.volume = .45; }catch(e){}
+        tryPlay().catch(function(){});
+      } else {
+        bgMusic.pause();
+      }
+    });
   }
 
   function triggerFlash(){
@@ -1796,8 +2031,13 @@ function launchInvitation(){
     }
   }
 
-  envScreen.addEventListener('click', openEnvelope);
-  envScreen.addEventListener('touchstart', openEnvelope, {passive:true});
+  // pointerdown se dispara antes que click y mantiene el "user activation" para play() en Android
+  if(window.PointerEvent){
+    envScreen.addEventListener('pointerdown', openEnvelope);
+  } else {
+    envScreen.addEventListener('touchstart', openEnvelope, {passive:true});
+    envScreen.addEventListener('click', openEnvelope);
+  }
   envScreen.addEventListener('keydown', (e)=>{ if(e.key==='Enter'||e.key===' ') openEnvelope(); });
 })();
 

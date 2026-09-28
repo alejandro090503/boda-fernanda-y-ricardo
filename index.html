@@ -1104,8 +1104,8 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
   </div>
 </div>
 <div id="env-flash" aria-hidden="true"></div>
-<!-- Audio servido desde Supabase · preload metadata para que Android lo tenga listo al primer play -->
-<audio id="music" src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/audio/boda-fernanda-y-ricardo/cancion.mp3" preload="metadata" loop playsinline crossorigin="anonymous"></audio>
+<!-- Audio servido desde Supabase · preload auto en Android para evitar bloqueo de autoplay tras gesto -->
+<audio id="music" src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/audio/boda-fernanda-y-ricardo/cancion.mp3" preload="auto" loop playsinline webkit-playsinline></audio>
 <button class="vinyl-btn" id="music-btn" type="button" aria-label="Reproducir música de la invitación">
   <div class="vinyl-tonearm">
     <div class="vinyl-tonearm-pivot"></div>
@@ -1591,7 +1591,7 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
   <div class="seam" style="--from:var(--surface);--to:var(--bg)" aria-hidden="true"></div>
 
   <!-- RSVP -->
-  <section class="section-bg rsvp" id="rsvp">
+  <section class="section-bg rsvp" id="rsvp" style="display:none" aria-hidden="true">
     <div class="container">
       <div class="rsvp-card">
         <!-- Esquinas decorativas -->
@@ -1616,7 +1616,7 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
 
           <div class="eyebrow">Confirma tu asistencia</div>
           <h2 class="rsvp-title">Tu presencia <em>lo es</em> todo</h2>
-          <p class="rsvp-text">Nos encantaría contar contigo. Por favor confirma tu asistencia antes del <strong>11 de Julio de 2026</strong> dando un toque al botón.</p>
+          <p class="rsvp-text">Nos encantaría contar contigo. Por favor confirma tu asistencia dando un toque al botón.</p>
 
           <div class="rsvp-divider">
             <svg class="rsvp-divider-heart" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
@@ -1643,7 +1643,7 @@ h2 em{font-family:var(--script)!important;font-style:normal!important;color:var(
 
           <div class="rsvp-deadline">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5z"/></svg>
-            Fecha límite · 11 de Julio de 2026
+            Confirma tu asistencia con tiempo
           </div>
         </div>
       </div>
@@ -1695,8 +1695,8 @@ const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 (function(){
   var PANEL_API = 'https://panel-invitados.vercel.app/api/confirmar';
   var RSVP_URL  = 'https://boda-fernanda-y-ricardo.vercel.app';
-  var DEADLINE  = new Date(2026, 6, 11, 23, 59, 59, 999);
-  var frozen    = Date.now() > DEADLINE.getTime();
+  var DEADLINE  = new Date(2099, 11, 31, 23, 59, 59, 999);
+  var frozen    = false;
   var params    = new URLSearchParams(window.location.search);
   var urlPara   = (params.get('para')  || '').trim();
   var rawP      = parseInt(params.get('pases') || '1', 10);
@@ -1948,25 +1948,25 @@ function launchInvitation(){
     }, 40);
   }
 
-  function tryPlay(){
-    if(!bgMusic) return Promise.reject();
-    try{ bgMusic.load(); }catch(e){}
-    var p = bgMusic.play();
-    if(p && typeof p.then === 'function') return p;
-    return Promise.resolve();
-  }
-
+  // CRÍTICO Android Chrome: play() debe llamarse SÍNCRONO dentro del handler del gesto.
+  // No tocar load(), currentTime ni volume ANTES, ya que rompe el "user activation token".
   function startMusic(){
     if(!bgMusic) return;
-    try{ bgMusic.currentTime = 0; }catch(e){}
-    try{ bgMusic.volume = 0; }catch(e){}
-    tryPlay().then(function(){
-      fadeVolume(.45, 3000);
-    }).catch(function(){
-      // Autoplay bloqueado en Android: dejar el botón visible y pulsante
-      try{ bgMusic.volume = .45; }catch(e){}
-    });
     if(vinylBtn) vinylBtn.classList.add('is-ready');
+
+    var p;
+    try{ p = bgMusic.play(); }catch(e){ p = null; }
+
+    if(p && typeof p.then === 'function'){
+      p.then(function(){
+        // Una vez el play arrancó, ya podemos hacer fade desde el volumen actual
+        try{ bgMusic.volume = .08; }catch(e){}
+        fadeVolume(.45, 2500);
+      }).catch(function(){
+        // Autoplay bloqueado: el botón vinyl queda visible para que el usuario lo active
+        try{ bgMusic.volume = .45; }catch(e){}
+      });
+    }
   }
 
   // Sincronizar el ícono play/pause con el estado real del audio
@@ -1975,18 +1975,52 @@ function launchInvitation(){
     bgMusic.addEventListener('pause', function(){ vinylBtn.classList.remove('is-playing'); });
     bgMusic.addEventListener('ended', function(){ vinylBtn.classList.remove('is-playing'); });
 
-    // Click en el botón = toggle play/pause (CRÍTICO si autoplay fue bloqueado en Android)
+    // Click en el botón = toggle play/pause (fallback si autoplay fue bloqueado)
     vinylBtn.addEventListener('click', function(ev){
       ev.preventDefault();
       ev.stopPropagation();
       if(bgMusic.paused){
-        try{ bgMusic.volume = .45; }catch(e){}
-        tryPlay().catch(function(){});
+        // play SÍNCRONO sin tocar nada antes
+        var p;
+        try{ p = bgMusic.play(); }catch(e){ p = null; }
+        if(p && typeof p.then === 'function'){
+          p.then(function(){
+            try{ bgMusic.volume = .45; }catch(e){}
+          }).catch(function(){});
+        }
       } else {
         bgMusic.pause();
       }
     });
   }
+
+  // Fallback global Android: si el usuario hace tap en cualquier parte ANTES de abrir el sobre
+  // y el audio aún no arrancó, intentamos despertar el contexto al primer gesto.
+  var unlockArmed = true;
+  function unlockAudioGesture(){
+    if(!unlockArmed || !bgMusic) return;
+    if(!bgMusic.paused) { unlockArmed = false; return; }
+    // No reproducir; solo "tocar" el media element para que Chrome lo registre como user-activated
+    try{
+      var p = bgMusic.play();
+      if(p && typeof p.then === 'function'){
+        p.then(function(){
+          // si estábamos antes del sobre, pausar inmediatamente; el openEnvelope retomará
+          if(!document.getElementById('envelope-screen') ||
+             document.getElementById('envelope-screen').style.display === 'none'){
+            // ya está abierta, dejarlo sonando
+          } else {
+            bgMusic.pause();
+          }
+        }).catch(function(){});
+      }
+    }catch(e){}
+    unlockArmed = false;
+    window.removeEventListener('pointerdown', unlockAudioGesture);
+    window.removeEventListener('touchstart',  unlockAudioGesture);
+  }
+  window.addEventListener('pointerdown', unlockAudioGesture, {once:false, passive:true});
+  window.addEventListener('touchstart',  unlockAudioGesture, {once:false, passive:true});
 
   function triggerFlash(){
     if(flashed) return;
@@ -2456,6 +2490,34 @@ window.addEventListener('resize',()=>ScrollTrigger.refresh());
   window.addEventListener('scroll',upd,{passive:true});
   window.addEventListener('resize',upd);
   upd();
+})();
+</script>
+<script>
+/* ELYSIUM AUDIO UNLOCK v1 — la musica se estrena DENTRO del primer gesto real del invitado.
+   iOS/Chrome retiran el permiso del gesto a los pocos ms, asi que un play() que corre al
+   terminar el video del sobre llega tarde y es rechazado en silencio. */
+(function(){
+  if(window.__elyAudioUnlock) return; window.__elyAudioUnlock=1;
+  var done=false, tries=0;
+  function A(){ return document.querySelector('audio'); }
+  function unlock(){
+    if(done) return;
+    var a=A(); if(!a) return;
+    try{ if(a.preload==='none'){ a.preload='auto'; a.load(); } }catch(e){}
+    if(!a.paused){ done=true; return; }
+    var p;
+    try{ p=a.play(); }catch(e){ return; }
+    if(p && p.then){ p.then(function(){ done=true; }).catch(function(){}); }
+    else { done=true; }
+  }
+  ['pointerdown','touchstart','touchend','click','keydown'].forEach(function(ev){
+    document.addEventListener(ev, unlock, {capture:true, passive:true});
+  });
+  var iv=setInterval(function(){
+    var a=A();
+    if(done || (a && !a.paused)){ done=true; clearInterval(iv); return; }
+    if(++tries>120) clearInterval(iv);
+  },1000);
 })();
 </script>
 </body>
